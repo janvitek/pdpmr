@@ -20,7 +20,7 @@ Approximatively fifteen hours a week, with regular codewalks and in-class tests.
 
 ## grading
 
-The class grade is on 100 points with 20 points for in-class participation (quizzes, questions, paper presentation, note taking), 40 points for the final project (software, report and oral defense) and 40 points for codewalks. The final grade is given on a scale of A=90, A-=85, B+=80, B=75, B-=70, C=65, D=55.  Codewalks conducted in class focus on the student's code output and graded based on code quality.
+The class grade is on 100 points with 33 points for in-class participation (quizzes, questions, paper presentation, note taking), 34 points for the final project (software, report and oral defense) and 33 points for codewalks. The final grade is given on a scale of A=90, A-=85, B+=80, B=75, B-=70, C=65, D=55.  Codewalks conducted in class focus on the student's code output and graded based on code quality.
 
 ## authorship
 
