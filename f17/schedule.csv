@@ -5,8 +5,7 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews
 3,9/19,Tuesday,Programming with Map Reduce,MR04,A1,A0
 3,9/22,Friday,Programming with Map reduce,HTDG 6,,A1
 4,9/26,Tuesday,Implementing Hadoop,HTDG 7-8,A2,
-4,9/29,Friday,Implementing Hadoop,"MAS11
-J+12",A3,A2
+4,9/29,Friday,Implementing Hadoop,"MAS11, J+12",A3,A2
 5,10/3,Tuesday,Sorts and joins,HTDG 9,,A3
 5,10/6,Friday,Beyond Map Reduce,"S14, SK12, O+14",A4,
 6,10/10,Tuesday,Guest lecture: Working at a big data startup,,A5,A4

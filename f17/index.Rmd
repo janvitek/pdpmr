@@ -36,202 +36,28 @@ Cheating means an F to all involved parties, expulsion from the class and notifi
 
 There will be few traditional lectures, instead we discuss code, books and papers. Student will answer questions about assigned reading during class. Students should notify the instructor of absences. A scribe will record discussions in a shared document.
 
-# schedule
 
+## office hours
 
-
-Week
-Date
-Day of week
-Topic
-Reading
-Assignments
-Code reviews
-1
-9/8
-Friday
-Threads
-
-
-
-2
-9/12
-Tuesday
-Distributed programming
-HTDG 1-2
-X0
-
-2
-9/15
-Friday
-Parallelism and consistency
-JMM
-A0
-X0
-3
-9/19
-Tuesday
-Data analysis with R
-MR04
-A1
-A0
-3
-9/22
-Friday
-Map Reduce I
-HTDG 6
-
-A1
-4
-9/26
-Tuesday
-Map Reduce II
-HTDG 7-8
-A2
-
-4
-9/29
-Friday
-Benchmarking
-MAS11
-J+12
-A3
-A2
-5
-10/3
-Tuesday
-Sorts and joins
-HTDG 9
-
-A3
-5
-10/6
-Friday
-Beyond Map Reduce
-S14
-SK12
-O+14
-A4
-
-6
-10/10
-Tuesday
-Working at a big data startup
-(Michal Malohlava)
-
-A5
-A4
-6
-10/13
-Friday
-Data-parallel pipelines
-R+12
-A6
-A5
-7
-10/17
-Tuesday
-BigTable
-HTDG 18
-FJ10
-
-A6
-7
-10/20
-Friday
-Spark: Basics
-KKWZ 1-5
-HTDG 19
-Z+12
-A7
-
-8
-10/24
-Tuesday
-Spark: Accumulators and broadcast variables
-KKWZ 6
-A8
-A7
-8
-10/27
-Friday
-Spark: Relational databases
-KKWZ 9
-OS6
-X9
-A8
-9
-10/31
-Tuesday
-Spark: SparkR
-KKWZ 6
-X10
-X9
-9
-11/3
-Friday
-Spark: Scaling
-A+15
-KKWZ 7
-X11
-X10
-10
-11/7
-Tuesday
-Spark: Streaming
-KKWZ 10
-
-X11
-10
-11/14
-Friday
-H2O
-
-X12
-
-11
-11/17
-Tuesday
-TensorFlow
-
-
-X12
-11
-11/21
-Friday
 TBA
 
+## class hours
 
 
-12
-11/24
-Tuesday
-TBA
+## grade challenges
+
+All regrade requests and grade challenges __must__ be submitted in writing, private posts on Piazza, no more than __7 days__ after the grade was awarded.  
 
 
+## schedule
 
-12
-12/1
-Friday
-TBA
+```{r,echo=FALSE,message=FALSE}
+require(dplyr)
+read.csv("schedule.csv") %>% select(-c(1,3)) -> data
+knitr::kable(data, format = "markdown")
+```
 
-
-
-13
-12/5
-Tuesday
-TBA
-
-
-
-13
-12/8
-Friday
-TBA
-
-
-
-reading
+## reading
 
 HTDG   Hadoop The Definitive Guide 4th Edition,  White, 
 
@@ -421,18 +247,4 @@ Time: 1 week
 Prerequisites: A4, Spark: Streaming
 Description:
 Fine print:
-office hours
 
-TBA
-
-class hours
-
-TBA
-
-grade challenges
-
-Make requests in the week following the grade's release.
-
-```{r}
- knitr::kable(head(iris[,1:3]), format = "markdown")
-```
