@@ -1,7 +1,7 @@
-name: "personal-website"
+name: "pdpmrf17"
 output_dir: "."
 navbar:
-  title: "Personal Website"
+  title: "PDPMR/F:17"
   left:
     - text: "Home"
       href: index.html
