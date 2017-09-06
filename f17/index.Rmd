@@ -11,8 +11,10 @@ Students should have taken the Algorithms course, should enjoy programming and s
 
 ## staff
 
-__Instructors:__ Jan Vitek and Konrad Siek
-__Teaching Assistant:__ Aviral Goel
+__Instructors:__ _Jan Vitek_ and _Konrad Siek_
+__Teaching Assistant:__ _Aviral Goel_
+
+Communication with staff is __exclusively__ through [Piazza](https://piazza.com/class/j793b4islbv6nu). Use private notes for messages that should not be visible to other students.
 
 ## work
 
@@ -28,7 +30,7 @@ Every code element (file or function) __must__ have a note ascribing authorship 
 
 ## integrity
 
-Cheating means an F to all involved parties, expulsion from the class and notification of ORAF.
+Cheating means an F to __all__ involved parties, expulsion from the class and notification of ORAF.
 
 ## presence
 
@@ -52,19 +54,19 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 
 |     |   | |
 |:----|:-----------------------------------------------|:-------------------|
-|HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | (PDFs are googlable, perhaps here) |
-|KKWZ | _Learning Spark_, __O’Reilly__                                  | |
-|MR04 | _MapReduce: Simplified Data Processing on Large Clusters_,  Dean, Ghemawat, __OSDI04__ | PDF |
-|FJ10 | _FlumeJava: Easy, Efficient Data-Parallel Pipelines_,  Chambers+, __PLDI'10__ | PDF |
-|SK12 | _Possible Hadoop Trajectories Stonebraker_,   Kepner, __CACM'12__         | Text |
-|S14  | _Hadoop at a Crossroads?_         Stonebraker, __CACM'14__                | Text |
-|M3R12| _Increased Performance for In-Memory Hadoop Jobs_, Shinnar+, __VLDB'12__  | PDF|
-|Z+12 | _A Fault-Tolerant Abstraction for In-Memory Cluster Comp_,  Zaharia+, __NSDI'12__ | PDF|
-|J+12 | _The Performance of MapReduce: An In-depth Study_,  Jiang+, __VLDB'10__   |PDF |
-|MAS11| _Evaluating MapReduce Performance Using Workload Suites_, Chen+, __MASCOTS'11__ |PDF|
-|OS06 | _Bigtable: A Distributed Storage System for Structured Data_,  Chang+, __OSDI06__ | PDF|
-|R+12 | _Nobody ever got fired for using Hadoop on a cluster_,  Rowstron+        | PDF |
-|A+15 | _Spark SQL: Relational Data Processing in Spark_,   Armburst+, __SIGMOD15__ |PDF|
-|O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | PDF |
-|AD15 | _Scaling spark in the real world: performance and usability_, Armburst+, __VLDB15__ |PDF|
-|JMM  | _The Java Memory Model FAQ_  |link|
+|HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | [link](https://www.google.com/#q=http:%2F%2Fwww.iteblog.com%2Fdownloads%2FOReilly.Hadoop.The.Definitive.Guide.4th.Edition.2015.3.pdf) |
+|KKWZ | _Learning Spark_, Zaharia M., et al., __O’Reilly__                                  | [link](https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20(O%27Reilly%2C%202015)(274s).pdf) |
+|MR04 | _MapReduce: Simplified Data Processing on Large Clusters_,  Dean, Ghemawat, __OSDI04__ | [link](http://research.google.com/archive/mapreduce-osdi04.pdf) |
+|FJ10 | _FlumeJava: Easy, Efficient Data-Parallel Pipelines_,  Chambers+, __PLDI'10__ | [link](http://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/FlumeJava.pdf) |
+|SK12 | _Possible Hadoop Trajectories Stonebraker_,   Kepner, __CACM'12__         | [link](http://cacm.acm.org/blogs/blog-cacm/149074-possible-hadoop-trajectories/fulltext) |
+|S14  | _Hadoop at a Crossroads?_         Stonebraker, __CACM'14__                | [link](http://cacm.acm.org/blogs/blog-cacm/177467-hadoop-at-a-crossroads/fulltext) |
+|M3R12| _Increased Performance for In-Memory Hadoop Jobs_, Shinnar+, __VLDB'12__  | [link](http://vldb.org/pvldb/vol5/p1736_avrahamshinnar_vldb2012.pdf) |
+|Z+12 | _A Fault-Tolerant Abstraction for In-Memory Cluster Comp_,  Zaharia+, __NSDI'12__ | [link](https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf) |
+|J+12 | _The Performance of MapReduce: An In-depth Study_,  Jiang+, __VLDB'10__   | [link](http://www.vldb.org/pvldb/vldb2010/papers/E03.pdf) |
+|MAS11| _Evaluating MapReduce Performance Using Workload Suites_, Chen+, __MASCOTS'11__ | [link](http://barbie.uta.edu/~jli/Resources/MapReduce&Hadoop/the%20case%20for%20evaluating%20mapreduce.pdf) |
+|OS06 | _Bigtable: A Distributed Storage System for Structured Data_,  Chang+, __OSDI06__ |[link](http://static.googleusercontent.com/media/research.google.com/en/us/archive/bigtable-osdi06.pdf) |
+|R+12 | _Nobody ever got fired for using Hadoop on a cluster_,  Rowstron+        | [link](http://research.microsoft.com/pubs/179615/msrtr-2013-2.pdf) |
+|A+15 | _Spark SQL: Relational Data Processing in Spark_,   Armburst+, __SIGMOD15__ |[link](https://amplab.cs.berkeley.edu/wp-content/uploads/2015/03/SparkSQLSigmod2015.pdf) |
+|O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | [link](https://amplab.cs.berkeley.edu/wp-content/uploads/2015/03/SparkSQLSigmod2015.pdf) |
+|AD15 | _Scaling spark in the real world: performance and usability_, Armburst+, __VLDB15__ |[link](https://people.csail.mit.edu/matei/papers/2015/vldb_spark.pdf) |
+|JMM  | _The Java Memory Model FAQ_  |[link](http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html)|
