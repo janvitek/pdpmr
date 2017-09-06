@@ -36,17 +36,23 @@ Cheating means an F to all involved parties, expulsion from the class and notifi
 
 There will be few traditional lectures, instead we discuss code, books and papers. Student will answer questions about assigned reading during class. Students should notify the instructor of absences. A scribe will record discussions in a shared document.
 
-
 ## office hours
 
-TBA
+Daily 10am -- 11am.
 
 ## class hours
 
+Forsyth Building, room 129, Tuesday, Friday 3:30 -- 5:00.
 
 ## grade challenges
 
 All regrade requests and grade challenges __must__ be submitted in writing, private posts on Piazza, no more than __7 days__ after the grade was awarded.  
+
+
+## code review and code walks
+
+A code review is conducted after each task. Teams review other teams' work, commenting on code quality, design, documentation and tests. The goal is to produce actionable suggestions for improvements. The output of a review is a report. Code walks are in-class discussions of programming tasks that start from a code review and explore the implementation of a student's project. Review are emailed in PDF to the instructor and code authors. They comment on the report, code and packaging. The report should give sufficient information to understand what was achieved. It should be clear and complete. The code should be well documents, avoid repetition, have no obvious bugs, have authorship comments. The packaging should make the results easily reproducible.  Be curious about the code. Question the results. Don't waste space in your report on what works well -- spend your time on what could be improved. Avoid generalities, be precise, give examples.
+
 
 
 ## schedule
@@ -59,71 +65,24 @@ knitr::kable(data, format = "markdown")
 
 ## reading
 
-HTDG   Hadoop The Definitive Guide 4th Edition,  White, 
-
-        O'Reilly (PDFs are googlable, perhaps here)
-
-KKWZ  Learning Spark, O’Reilly
-
-MR04   MapReduce: Simplified Data Processing on Large Clusters, 
-
-        Dean, Ghemawat, OSDI04, PDF
-
-FJ10   FlumeJava: Easy, Efficient Data-Parallel Pipelines, 
-
-        Chambers+, PLDI'10, PDF
-
-SK12   Possible Hadoop Trajectories Stonebraker, 
-
-        Kepner, CACM'12 Text
-
-S14    Hadoop at a Crossroads? 
-
-        Stonebraker, CACM'14 Text
-
-M3R12  Increased Performance for In-Memory Hadoop Jobs, 
-
-        Shinnar+, VLDB'12 PDF
-
-Z+12   A Fault-Tolerant Abstraction for In-Memory Cluster Comp, 
-
-        Zaharia+, NSDI'12 PDF
-
-J+12   The Performance of MapReduce: An In-depth Study,  
-
-        Jiang+, VLDB'10, PDF
-
-MAS11  Evaluating MapReduce Performance Using Workload Suites, 
-
-        Chen+, MASCOTS'11 PDF
-
-OS06   Bigtable: A Distributed Storage System for Structured Data, 
-
-        Chang+, OSDI06  PDF
-
-R+12   Nobody ever got fired for using Hadoop on a cluster, 
-
-        Rowstron+, PDF
-
-A+15   Spark SQL: Relational Data Processing in Spark, 
-
-        Armburst+, SIGMOD15 PDF
-
-O+14   Processing Theta-Joins using MapReduce, 
-
-        Okcan+ SIGMOD11 PDF
-
-AD15   Scaling spark in the real world: performance and usability,
-
-        Armburst+, VLDB15 PDF
-
-JMM    The Java Memory Model FAQ  link
-
-code review and code walks
-
-A code review is conducted after each task. Teams review other teams' work, commenting on code quality, design, documentation and tests. The goal is to produce actionable suggestions for improvements. The output of a review is a report. Code walks are in-class discussions of programming tasks that start from a code review and explore the implementation of a student's project.
-
-Code reviews are due Monday noon. Review are emailed in PDF to the instructor and code authors. They comment on the report, code and packaging. The report should give sufficient information to understand what was achieved. It should be clear and complete. The code should be well documents, avoid repetition, have no obvious bugs, have authorship comments. The packaging should make the results easily reproducible.  Be curious about the code. Question the results. Don't waste space in your report on what works well -- spend your time on what could be improved. Avoid generalities, be precise, give examples.
+|     |   | |
+|:----|:-----------------------------------------------|:-------------------|
+|HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | (PDFs are googlable, perhaps here) |
+|KKWZ | _Learning Spark_, __O’Reilly__                                  | |
+|MR04 | _MapReduce: Simplified Data Processing on Large Clusters_,  Dean, Ghemawat, __OSDI04__ | PDF |
+|FJ10 | _FlumeJava: Easy, Efficient Data-Parallel Pipelines_,  Chambers+, __PLDI'10__ | PDF |
+|SK12 | _Possible Hadoop Trajectories Stonebraker_,   Kepner, __CACM'12__         | Text |
+|S14  | _Hadoop at a Crossroads?_         Stonebraker, __CACM'14__                | Text |
+|M3R12| _Increased Performance for In-Memory Hadoop Jobs_, Shinnar+, __VLDB'12__  | PDF|
+|Z+12 | _A Fault-Tolerant Abstraction for In-Memory Cluster Comp_,  Zaharia+, __NSDI'12__ | PDF|
+|J+12 | _The Performance of MapReduce: An In-depth Study_,  Jiang+, __VLDB'10__   |PDF |
+|MAS11| _Evaluating MapReduce Performance Using Workload Suites_, Chen+, __MASCOTS'11__ |PDF|
+|OS06 | _Bigtable: A Distributed Storage System for Structured Data_,  Chang+, __OSDI06__ | PDF|
+|R+12 | _Nobody ever got fired for using Hadoop on a cluster_,  Rowstron+        | PDF |
+|A+15 | _Spark SQL: Relational Data Processing in Spark_,   Armburst+, __SIGMOD15__ |PDF|
+|O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | PDF |
+|AD15 | _Scaling spark in the real world: performance and usability_, Armburst+, __VLDB15__ |PDF|
+|JMM  | _The Java Memory Model FAQ_  |link|
 
 assignments
 
