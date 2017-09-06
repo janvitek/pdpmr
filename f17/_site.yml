@@ -5,8 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About Me"
+    - text: "Schedule"
       href: about.html
+    - text: "Tasks"
+      href: tasks.html
       
 output:
   html_document:
