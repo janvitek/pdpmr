@@ -1,0 +1,27 @@
+Week,Date,Day of week,Topic,Reading,Assignments,Code reviews
+1,9/8,Friday,Introduction to Distributed Parallel Processing  Overview of applications in Data Analytics,,,
+2,9/12,Tuesday,Parallelism and Concurrency,HTDG 1-2,X0,
+2,9/15,Friday,"Reproducibility, Measurements, Performance evaluation",JMM,A0,X0
+3,9/19,Tuesday,Programming with Map Reduce,MR04,A1,A0
+3,9/22,Friday,Programming with Map reduce,HTDG 6,,A1
+4,9/26,Tuesday,Implementing Hadoop,HTDG 7-8,A2,
+4,9/29,Friday,Implementing Hadoop,"MAS11
+J+12",A3,A2
+5,10/3,Tuesday,Sorts and joins,HTDG 9,,A3
+5,10/6,Friday,Beyond Map Reduce,"S14, SK12, O+14",A4,
+6,10/10,Tuesday,Guest lecture: Working at a big data startup,,A5,A4
+6,10/13,Friday,Midterm evaluation,R+12,A6,A5
+7,10/17,Tuesday,Data-parallel pipelines,"HTDG 18, FJ10",,A6
+7,10/20,Friday,BigTable,"KKWZ 1-5, HTDG 19, Z+12",A7,
+8,10/24,Tuesday,Spark: Basics,KKWZ 6,A8,A7
+8,10/27,Friday,Spark: Accumulators and broadcast variables,"KKWZ 9, OS6",X9,A8
+9,10/31,Tuesday,Spark: Relational databases,KKWZ 6,X10,X9
+9,11/3,Friday,Spark: SparkR,"A+15, KKWZ 7",X11,X10
+10,11/7,Tuesday,Spark: Scaling,KKWZ 10,,X11
+10,11/14,Friday,Spark: Streaming,,X12,
+11,11/17,Tuesday,H2O,,,X12
+11,11/21,Friday,TensorFlow,,,
+12,11/24,Tuesday,,,,
+12,12/1,Friday,,,,
+13,12/5,Tuesday,Final exam and Project Presentations,,,
+13,12/8,Friday,Final exam and Project Presentations,,,
