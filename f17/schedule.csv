@@ -1,6 +1,6 @@
 Week,Date,Day of week,Topic,Reading,Assignments,Code reviews
-1,9/8,Friday,Introduction to Distributed Parallel Processing  Overview of applications in Data Analytics,,,
-2,9/12,Tuesday,Parallelism and Concurrency,HTDG 1-2,X0,
+1,9/8,Friday,Introduction to distributed parallel processing and overview of applications in data analytics,,,
+2,9/12,Tuesday,Processing data concurrently and in parallel,HTDG 1-2,X0,
 2,9/15,Friday,"Reproducibility, Measurements, Performance evaluation",JMM,A0,X0
 3,9/19,Tuesday,Programming with Map Reduce,MR04,A1,A0
 3,9/22,Friday,Programming with Map reduce,HTDG 6,,A1
@@ -20,7 +20,7 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews
 10,11/14,Friday,Spark: Streaming,,X12,
 11,11/17,Tuesday,H2O,,,X12
 11,11/21,Friday,TensorFlow,,,
-12,11/24,Tuesday,,,,
-12,12/1,Friday,,,,
+12,11/24,Tuesday,Weka,,,
+12,12/1,Friday,RMI,,,
 13,12/5,Tuesday,Final exam and Project Presentations,,,
 13,12/8,Friday,Final exam and Project Presentations,,,
