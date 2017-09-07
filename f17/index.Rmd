@@ -53,7 +53,7 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 ## reading
 
 |     |   | |
-|:----|:-----------------------------------------------|:-------------------|
+|:----|:--------------------------------------------------------------------|:-------------------|
 |HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | [link](https://www.google.com/#q=http:%2F%2Fwww.iteblog.com%2Fdownloads%2FOReilly.Hadoop.The.Definitive.Guide.4th.Edition.2015.3.pdf) |
 |KKWZ | _Learning Spark_, Zaharia M., et al., __O’Reilly__                                  | [link](https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20(O%27Reilly%2C%202015)(274s).pdf) |
 |MR04 | _MapReduce: Simplified Data Processing on Large Clusters_,  Dean, Ghemawat, __OSDI04__ | [link](http://research.google.com/archive/mapreduce-osdi04.pdf) |
@@ -70,3 +70,8 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 |O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | [link](https://amplab.cs.berkeley.edu/wp-content/uploads/2015/03/SparkSQLSigmod2015.pdf) |
 |AD15 | _Scaling spark in the real world: performance and usability_, Armburst+, __VLDB15__ |[link](https://people.csail.mit.edu/matei/papers/2015/vldb_spark.pdf) |
 |JMM  | _The Java Memory Model FAQ_  |[link](http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html)|
+|B+16| _SystemML: Declarative Machine Learning on Spark_, M. Boehm et al., __VLDB16__ |[link](http://www.vldb.org/pvldb/vol9/p1425-boehm.pdf)|
+|M+16| _dmapply: A functional primitive to express distributed machine learning algorithms in R_, Ma et al. __VLDB16__ | [link](http://dl.acm.org/citation.cfm?id=3007268) |
+|S+16| _Titian: Data Provenance Support in Spark_, Shah et al., __VLDB16__ | [link](http://www.vldb.org/pvldb/vol9/p216-interlandi.pdf) |
+
+
