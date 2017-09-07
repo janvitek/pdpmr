@@ -16,7 +16,7 @@ in the entire corpus of text, its score is **0**.  If the letter makes up
 <8,10)% of the corpus, its score is **1**. If it makes up <6,8)%, its score is
 **2**. If it makes up <4,6)%, its score is **4**. If it makes up <2,4)%, its
 score is **8**.  If the letter makes up <1,2)%, its score is **16**. Otherwise,
-the score is **32**. Whitespaces, nbumbers, and punctuation do not receive
+the score is **32**. Whitespaces, numbers, and punctuation do not receive
 scores. Scoring is case-insensitive.
 
 A word's score is the sum of the scores of all its letters.
@@ -45,7 +45,8 @@ members of the *k* neighborhood.
 ### Subtask A0.1 Warm-up
 
 Write a neighborhood scoring program that for each word *w* in a given corpus
-returns the mean score of *w*'s neighborhoods.
+returns the mean score of *w*'s *k*-neighborhoods. The parameter *k* is
+configurable.
 
 ### Subtask A0.2: Parallelization
 
