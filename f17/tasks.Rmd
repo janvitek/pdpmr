@@ -7,12 +7,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## A0 Concordance
-_Prerequisites:_ Threads
-_Description:_
-A concordance is a tool lexicographers use to make dictionaries. It is a document that shows the list of words used in a specific body of work (corpus) and their immediate context. A context can be defined variously, but for our purposes it is 10 words appearing before and after the given word. For instance, here is the immediate context for an appearance of the word "fallow" in Shakespeare’s Henry V: _…prisoners wildly overgrown with hair, Put forth disorder'd twigs; her fallow leas The darnel, hemlock and rank fumitory Doth root upon…_
-__Task 1__ (warm-up): Write a concordancer that accepts a text file and creates a concordance for all words appearing in the text file. 
-__Task 2:__ use threads to parallelize parts of the creation of the concordance.
+<!-- ## A0 Concordance -->
+<!-- _Prerequisites:_ Threads -->
+<!-- _Description:_ -->
+<!-- A concordance is a tool lexicographers use to make dictionaries. It is a document that shows the list of words used in a specific body of work (corpus) and their immediate context. A context can be defined variously, but for our purposes it is 10 words appearing before and after the given word. For instance, here is the immediate context for an appearance of the word "fallow" in Shakespeare’s Henry V: _…prisoners wildly overgrown with hair, Put forth disorder'd twigs; her fallow leas The darnel, hemlock and rank fumitory Doth root upon…_ -->
+<!-- __Task 1__ (warm-up): Write a concordancer that accepts a text file and creates a concordance for all words appearing in the text file.  -->
+<!-- __Task 2:__ use threads to parallelize parts of the creation of the concordance. -->
 
 <!-- Fine print: -->
 <!-- (0) Individual assignment. TODO -->
