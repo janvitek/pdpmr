@@ -52,12 +52,13 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 
 ## reading
 
+<!-- [link](https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20(O%27Reilly%2C%202015)(274s).pdf) | -->
+<!-- [link](https://www.google.com/#q=http:%2F%2Fwww.iteblog.com%2Fdownloads%2FOReilly.Hadoop.The.Definitive.Guide.4th.Edition.2015.3.pdf) | -->
+
 |     |   | |
 |:----|:--------------------------------------------------------------------|:-------------------|
 |HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | | 
-<!-- [link](https://www.google.com/#q=http:%2F%2Fwww.iteblog.com%2Fdownloads%2FOReilly.Hadoop.The.Definitive.Guide.4th.Edition.2015.3.pdf) | -->
 |KKWZ | _Learning Spark_, Zaharia M., et al., __O’Reilly__                                  | |
-<!-- [link](https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20(O%27Reilly%2C%202015)(274s).pdf) | -->
 |MR04 | _MapReduce: Simplified Data Processing on Large Clusters_,  Dean, Ghemawat, __OSDI04__ | [link](http://research.google.com/archive/mapreduce-osdi04.pdf) |
 |FJ10 | _FlumeJava: Easy, Efficient Data-Parallel Pipelines_,  Chambers+, __PLDI'10__ | [link](http://pages.cs.wisc.edu/~akella/CS838/F12/838-CloudPapers/FlumeJava.pdf) |
 |SK12 | _Possible Hadoop Trajectories Stonebraker_,   Kepner, __CACM'12__         | [link](http://cacm.acm.org/blogs/blog-cacm/149074-possible-hadoop-trajectories/fulltext) |
