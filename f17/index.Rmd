@@ -55,6 +55,7 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 <!-- [link](https://github.com/CjTouzi/Learning-RSpark/blob/master/Zaharia%20M.%2C%20et%20al.%20Learning%20Spark%20(O%27Reilly%2C%202015)(274s).pdf) | -->
 <!-- [link](https://www.google.com/#q=http:%2F%2Fwww.iteblog.com%2Fdownloads%2FOReilly.Hadoop.The.Definitive.Guide.4th.Edition.2015.3.pdf) | -->
 
+
 |     |   | |
 |:----|:--------------------------------------------------------------------|:-------------------|
 |HTDG | _Hadoop The Definitive Guide_ 4th Edition,  White, __O'Reilly__ | | 
@@ -64,7 +65,7 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 |SK12 | _Possible Hadoop Trajectories Stonebraker_,   Kepner, __CACM'12__         | [link](http://cacm.acm.org/blogs/blog-cacm/149074-possible-hadoop-trajectories/fulltext) |
 |S14  | _Hadoop at a Crossroads?_         Stonebraker, __CACM'14__                | [link](http://cacm.acm.org/blogs/blog-cacm/177467-hadoop-at-a-crossroads/fulltext) |
 |M3R12| _Increased Performance for In-Memory Hadoop Jobs_, Shinnar+, __VLDB'12__  | [link](http://vldb.org/pvldb/vol5/p1736_avrahamshinnar_vldb2012.pdf) |
-|Z+12 | _A Fault-Tolerant Abstraction for In-Memory Cluster Comp_,  Zaharia+, __NSDI'12__ | [link](https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf) |
+|Z+12 | _A Fault-Tolerant Abstraction for In-Memory Cluster Comp_,  Zaharia+, __NSDI'12__ | [link](https://www.usenix.org/system/files/conference/nsdi12/nsdi12-final138.pdf) |
 |J+12 | _The Performance of MapReduce: An In-depth Study_,  Jiang+, __VLDB'10__   | [link](http://www.vldb.org/pvldb/vldb2010/papers/E03.pdf) |
 |MAS11| _Evaluating MapReduce Performance Using Workload Suites_, Chen+, __MASCOTS'11__ | [link](http://barbie.uta.edu/~jli/Resources/MapReduce&Hadoop/the%20case%20for%20evaluating%20mapreduce.pdf) |
 |OS06 | _Bigtable: A Distributed Storage System for Structured Data_,  Chang+, __OSDI06__ |[link](http://static.googleusercontent.com/media/research.google.com/en/us/archive/bigtable-osdi06.pdf) |
@@ -76,5 +77,4 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 |B+16| _SystemML: Declarative Machine Learning on Spark_, M. Boehm et al., __VLDB16__ |[link](http://www.vldb.org/pvldb/vol9/p1425-boehm.pdf)|
 |M+16| _dmapply: A functional primitive to express distributed machine learning algorithms in R_, Ma et al. __VLDB16__ | [link](http://dl.acm.org/citation.cfm?id=3007268) |
 |S+16| _Titian: Data Provenance Support in Spark_, Shah et al., __VLDB16__ | [link](http://www.vldb.org/pvldb/vol9/p216-interlandi.pdf) |
-
 
