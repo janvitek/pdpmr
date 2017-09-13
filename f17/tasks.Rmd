@@ -64,11 +64,7 @@ Compare the execution time of the sequential scorer and the parallel scorer.
 Use top 100 books of Project Gutenberg as input
 (https://www.gutenberg.org/browse/scores/top). 
 
-### Submitting
-
 <!--The program should be buildable via `make` and runnable via `make run `-->
-
-Write a one-page report summarising the implementation and the 
 
 <!-- ## A0 Concordance -->
 <!-- _Prerequisites:_ Threads -->
