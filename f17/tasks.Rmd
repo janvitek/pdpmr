@@ -64,6 +64,52 @@ Compare the execution time of the sequential scorer and the parallel scorer.
 Use top 100 books of Project Gutenberg as input
 (https://www.gutenberg.org/browse/scores/top). 
 
+
+## A1 Neighborhood Score: Benchmarking
+
+Analyze the performance of programs written for A0. 
+
+Collect execution-time information for the sequential and parallel/concurrent
+variants of the implementation using the following
+[corpus](files/books.tar.gz). For the parallel/concurrent version vary the
+number of threads (2-16).
+
+Prepare a report using R Markdown highlighting the differences in the execution
+profile of the variants.
+
+* Explain the difference in the execution profiles among variants;
+* Comment on the differences in performance of the sequential and parallel/concurrent variants;
+* Comment on the impact of the number of executor threads on performance;
+* Explain which implementation variant and configuration have the best combination of performance and stability.
+
+Apart from the results of the evaluation the report should include the specs of
+the execution environment (Java version, OS version, relevant hardware specs)
+and a summary description of the design of the evaluated programs.
+
+### Deliverables
+
+Deliver the code of the implementation and the performance report via
+(NEU/normil) GitHub and share the repository with the instructors and TA:
+`janvitek`, `aviralg`, `kondziu`.
+
+1. Repository name: `pdpmr-f17-your-name-a1` (replace `your-name` with your name in lowercase letters with dashes between words).
+2. Required files: 
+
+    * `src/` (directory containing the sources of the implentation)
+    * `README.md` (Markdown file containing the description of the implementations)
+    * `Makefile` (Configuration file for the make command with the following rules: `build` — builds all the implementations, `run` — runs the variants and generate the report, `all` – build and run)
+    * `report.Rmd` (The report as described in the previous section)
+    * `report.html` (An HTML rendering of `report.Rmd`)
+
+<!-- ## A2 Neighborhood Score: MapReduce/Hadoop
+
+Implement a variant of A0 using MapReduce/Hadoop.
+
+Prepare a report using R Markdown comparing the MapReduce implementation with
+the other implementation variants. -->
+
+
+
 <!--The program should be buildable via `make` and runnable via `make run `-->
 
 <!-- ## A0 Concordance -->
