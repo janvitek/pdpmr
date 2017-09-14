@@ -100,6 +100,8 @@ Deliver the code of the implementation and the performance report via
     * `Makefile` (Configuration file for the make command with the following rules: `build` — builds all the implementations, `run` — runs the variants and generate the report, `all` – build and run)
     * `report.Rmd` (The report as described in the previous section)
     * `report.html` (An HTML rendering of `report.Rmd`)
+    
+**Not adhering to the prescribed structure will be penalized.**
 
 <!-- ## A2 Neighborhood Score: MapReduce/Hadoop
 
