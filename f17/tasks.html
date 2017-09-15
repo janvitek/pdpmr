@@ -228,6 +228,41 @@ furiously ↦ [ideas, sleep]</code></pre>
 <div id="subtask-a0.3-benchmark" class="section level3">
 <h3>Subtask A0.3 Benchmark</h3>
 <p>Compare the execution time of the sequential scorer and the parallel scorer. Use top 100 books of Project Gutenberg as input (<a href="https://www.gutenberg.org/browse/scores/top" class="uri">https://www.gutenberg.org/browse/scores/top</a>).</p>
+</div>
+</div>
+<div id="a1-neighborhood-score-benchmarking" class="section level2">
+<h2>A1 Neighborhood Score: Benchmarking</h2>
+<p>Analyze the performance of programs written for A0.</p>
+<p>Collect execution-time information for the sequential and parallel/concurrent variants of the implementation using the following <a href="files/books.tar.gz">corpus</a>. For the parallel/concurrent version vary the number of threads (2-16).</p>
+<p>Prepare a report using R Markdown highlighting the differences in the execution profile of the variants.</p>
+<ul>
+<li>Explain the difference in the execution profiles among variants;</li>
+<li>Comment on the differences in performance of the sequential and parallel/concurrent variants;</li>
+<li>Comment on the impact of the number of executor threads on performance;</li>
+<li>Explain which implementation variant and configuration have the best combination of performance and stability.</li>
+</ul>
+<p>Apart from the results of the evaluation the report should include the specs of the execution environment (Java version, OS version, relevant hardware specs) and a summary description of the design of the evaluated programs.</p>
+<div id="deliverables" class="section level3">
+<h3>Deliverables</h3>
+<p>Deliver the code of the implementation and the performance report via (NEU/normil) GitHub and share the repository with the instructors and TA: <code>janvitek</code>, <code>aviralg</code>, <code>kondziu</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Repository name: <code>pdpmr-f17-your-name-a1</code> (replace <code>your-name</code> with your name in lowercase letters with dashes between words).</li>
+<li><p>Required files:</p>
+<ul>
+<li><code>src/</code> (directory containing the sources of the implentation)</li>
+<li><code>README.md</code> (Markdown file containing the description of the implementations)</li>
+<li><code>Makefile</code> (Configuration file for the make command with the following rules: <code>build</code> — builds all the implementations, <code>run</code> — runs the variants and generate the report, <code>all</code> – build and run)</li>
+<li><code>report.Rmd</code> (The report as described in the previous section)</li>
+<li><code>report.html</code> (An HTML rendering of <code>report.Rmd</code>)</li>
+</ul></li>
+</ol>
+<p><strong>Not adhering to the prescribed structure will be penalized.</strong></p>
+<!-- ## A2 Neighborhood Score: MapReduce/Hadoop
+
+Implement a variant of A0 using MapReduce/Hadoop.
+
+Prepare a report using R Markdown comparing the MapReduce implementation with
+the other implementation variants. -->
 <!--The program should be buildable via `make` and runnable via `make run `-->
 <!-- ## A0 Concordance -->
 <!-- _Prerequisites:_ Threads -->
