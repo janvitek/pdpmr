@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Letters are scored according to the rarity with which they appear in a given
 corpus (a large body of texts). Rare letters are worth more than common
-letters. Specifically, if a given letter makes up more than 10% of the letters
+letters. Specifically, if a given letter makes up 10% or more of the letters
 in the entire corpus of text, its score is **0**.  If the letter makes up
 [8,10)% of the corpus (at least 8 but not more than 10 percent of the corpus),
 its score is **1**. If it makes up [6,8)%, its score is **2**. If it makes up
