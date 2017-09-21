@@ -32,7 +32,6 @@ Deliver the code of the implementation and the performance report via
 [CCS GitHub](https://github.ccs.neu.edu) or [Github](https://github.com) and 
 share the repository with the instructors and TAs: `janvitek`, `aviralg`, `kondziu`.
 
-
 1. Repository name: `pdpmr-f17-your-name-a1` (replace `your-name` with your name in lowercase letters with dashes between words).
 2. Required files: 
 
@@ -41,6 +40,7 @@ share the repository with the instructors and TAs: `janvitek`, `aviralg`, `kondz
     * `Makefile` (Configuration file for the make command with the following rules: `build` — builds all the implementations, `run` — runs the variants and generate the report, `all` – build and run)
     * `report.Rmd` (The report as described in the previous section)
     * `report.html` (An HTML rendering of `report.Rmd`)
+    * `input/` (A directory containing input files used in the report; please `gzip` all text files to save space)
     
 **Submissions not adhering to the prescribed structure will be penalized.**
 
