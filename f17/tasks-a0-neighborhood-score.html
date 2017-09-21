@@ -11,7 +11,7 @@
 
 
 
-<title>Tasks</title>
+<title>A0 - Neighborhood Score</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,41 +197,36 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Tasks</h1>
+<h1 class="title toc-ignore">A0 - Neighborhood Score</h1>
 
 </div>
 
 
-<table>
-<colgroup>
-<col width="10%" />
-<col width="43%" />
-<col width="20%" />
-<col width="25%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Assignment</th>
-<th align="left">Title</th>
-<th align="left">Release Date</th>
-<th align="left">Submission Date</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">A0</td>
-<td align="left"><a href="tasks-a0-neighborhood-score.html">Neighborhood Score</a></td>
-<td align="left">8 September 2017</td>
-<td align="left">None</td>
-</tr>
-<tr class="even">
-<td align="left">A1</td>
-<td align="left"><a href="tasks-a1-neighborhood-score-benchmarking.html">Neighborhood Score: Benchmarking</a></td>
-<td align="left">15 September 2017</td>
-<td align="left">12 Noon, 22 September 2017</td>
-</tr>
-</tbody>
-</table>
+<p>Letters are scored according to the rarity with which they appear in a given corpus (a large body of texts). Rare letters are worth more than common letters. Specifically, if a given letter makes up 10% or more of the letters in the entire corpus of text, its score is <strong>0</strong>. If the letter makes up [8,10)% of the corpus (at least 8 but not more than 10 percent of the corpus), its score is <strong>1</strong>. If it makes up [6,8)%, its score is <strong>2</strong>. If it makes up [4,6)%, its score is <strong>4</strong>. If it makes up [2,4)%, its score is <strong>8</strong>. If the letter makes up [1,2)%, its score is <strong>16</strong>. Otherwise, the score is <strong>32</strong>. Whitespaces, numbers, and punctuation do not receive scores. Scoring is case-insensitive.</p>
+<p>A word’s score is the sum of the scores of all its letters.</p>
+<p>A word’s <em>k</em>-neighborhood is the bag of <em>k</em> words appearing before it and <em>k</em> words appearing after it in the corpus. For instance given the sentence:</p>
+<p><code>Colorless green ideas sleep furiously.</code></p>
+<p>the words have the following 2-neighborhoods:</p>
+<pre><code>colorless ↦ [green, ideas]
+green ↦ [colorless, ideas, sleep]
+ideas ↦ [colorless, green, sleep, furiously]
+sleep ↦ [green, ideas, furiously]
+furiously ↦ [ideas, sleep]</code></pre>
+<p>If a word appears in the corpus multiple times, it will have multiple <em>k</em>-neighborhoods.</p>
+<p>The score of a <em>k</em>-neighborhood is the sum of the scores of the words that are members of the <em>k</em> neighborhood.</p>
+<div id="subtask-a0.1-warm-up" class="section level2">
+<h2>Subtask A0.1 Warm-up</h2>
+<p>Write a neighborhood scoring program that for each word <em>w</em> in a given corpus returns the mean score of <em>w</em>’s <em>k</em>-neighborhoods. The parameter <em>k</em> is configurable.</p>
+<p>The scorer outputs a <strong>CSV</strong> text file with two columns. The first column contains all the words in the corpus in alphabetical order. The second column contains the mean <em>k</em>-neighborhood scored for each of the words in the first column.</p>
+</div>
+<div id="subtask-a0.2-parallelization" class="section level2">
+<h2>Subtask A0.2 Parallelization</h2>
+<p>Parallelize the neighborhood scoring program using Java threads.</p>
+</div>
+<div id="subtask-a0.3-benchmark" class="section level2">
+<h2>Subtask A0.3 Benchmark</h2>
+<p>Compare the execution time of the sequential scorer and the parallel scorer. Use top 100 books of Project Gutenberg as input (<a href="https://www.gutenberg.org/browse/scores/top" class="uri">https://www.gutenberg.org/browse/scores/top</a>).</p>
+</div>
 
 
 
