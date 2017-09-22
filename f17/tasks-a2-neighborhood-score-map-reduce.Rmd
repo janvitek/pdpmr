@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Write an additional implementation of A0 using Hadoop & MapReduce, then re-evaluate them. Use a pseudo-distributed cluster to evaluate the MapReduce implementation.
 
-Collect and analyze execution-time information of all implementations by analogy to A1. Use the following [big book corpus](files/books-big.tar.gz).
+Collect and analyze execution-time information of all implementations by analogy to A1. Use the following [big corpus](files/big.tar.gz).
 
 Prepare a report using R Markdown highlighting the differences in the execution
 profile of the variants. In particular, compare the difference in execution profiles of the Hadoop/MR vs other variants and comment on the reasons for performance increases or decreases.
