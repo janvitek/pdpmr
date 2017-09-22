@@ -7,7 +7,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-| Assignment | Title                                                                    | Release Date         | Submission Date            |
-| :--------- | :-------------------------------------------                             | :------------------- | :------------------------- |
-| A0         | [Neighborhood Score](tasks-a0-neighborhood-score.html)                   | 8 September 2017     | None                       |
+| Assignment | Title                                                                             | Release Date         | Submission Date            |
+| :--------- | :-------------------------------------------                                      | :------------------- | :------------------------- |
+| A0         | [Neighborhood Score](tasks-a0-neighborhood-score.html)                            | 8 September 2017     | None                       |
 | A1         | [Neighborhood Score: Benchmarking](tasks-a1-neighborhood-score-benchmarking.html) | 15 September 2017    | 12 Noon, 22 September 2017 |
+| A2         | [Neighborhood Score: MapReduce](tasks-a1-neighborhood-map-reduce.html)            | 22 September 2017    | 12 Noon, 29 September 2017 |

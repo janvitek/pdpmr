@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>A2 - Neighborhood Score: MapReduce</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PDPMR/F:17</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">Schedule</a>
+</li>
+<li>
+  <a href="tasks.html">Tasks</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">A2 - Neighborhood Score: MapReduce</h1>
+
+</div>
+
+
+<p>Write an additional implementation of A0 using Hadoop &amp; MapReduce, then re-evaluate them. Use a pseudo-distributed cluster to evaluate the MapReduce implementation.</p>
+<p>Collect and analyze execution-time information of all implementations by analogy to A1. Use the following <a href="files/books-big.tar.gz">big book corpus</a>.</p>
+<p>Prepare a report using R Markdown highlighting the differences in the execution profile of the variants. In particular, compare the difference in execution profiles of the Hadoop/MR vs other variants and comment on the reasons for performance increases or decreases.</p>
+<div id="deliverables" class="section level2">
+<h2>Deliverables</h2>
+<p>Deliver the code of the implementation and the performance report via a private repository on <a href="https://github.ccs.neu.edu">CCS GitHub</a> or <a href="https://github.com">Github</a> and share the repository with the instructors and TAs:</p>
+<ul>
+<li>if you are creating private repository on <code>github.ccs.neu.edu</code>, share it with <code>aviralgoel</code>, <code>samarthshetty1990</code>, and <code>ksiek</code>.</li>
+<li>if you are creating private repository on <code>github.com</code>, share it with <code>aviralg</code>, <code>kondziu</code>, <code>janvitek</code>, and <code>shettysamarth</code>.</li>
+</ul>
+<p>Repository name: <code>pdpmr-f17-your-name-a2</code> (replace <code>your-name</code> with your name in lowercase letters with dashes between words).</p>
+<p>Required files:</p>
+<pre><code>* `src/` (directory containing the sources of the implentation)
+* `README.md` (Markdown file containing the description of the implementations)
+* `Makefile` (Configuration file for the make command with the following rules: `build` — builds all the implementations, `run` — runs the variants and generate the report, `all` – build and run; be sure that `build` works on somebody else&#39;s machine)
+* `report.Rmd` (The report as described in the previous section)
+* `report.html` (An HTML rendering of `report.Rmd`)
+* `input/` (A directory containing input files used in the report; please `gzip` all text files to save space)</code></pre>
+<p><strong>Submissions not adhering to the prescribed structure will be penalized.</strong></p>
+<!-- ## A2 Neighborhood Score: MapReduce/Hadoop
+
+Implement a variant of A0 using MapReduce/Hadoop.
+
+Prepare a report using R Markdown comparing the MapReduce implementation with
+the other implementation variants. -->
+<!--The program should be buildable via `make` and runnable via `make run `-->
+<!-- ## A0 Concordance -->
+<!-- _Prerequisites:_ Threads -->
+<!-- _Description:_ -->
+<!-- A concordance is a tool lexicographers use to make dictionaries. It is a document that shows the list of words used in a specific body of work (corpus) and their immediate context. A context can be defined variously, but for our purposes it is 10 words appearing before and after the given word. For instance, here is the immediate context for an appearance of the word "fallow" in Shakespeare’s Henry V: _…prisoners wildly overgrown with hair, Put forth disorder'd twigs; her fallow leas The darnel, hemlock and rank fumitory Doth root upon…_ -->
+<!-- __Task 1__ (warm-up): Write a concordancer that accepts a text file and creates a concordance for all words appearing in the text file.  -->
+<!-- __Task 2:__ use threads to parallelize parts of the creation of the concordance. -->
+<!-- Fine print: -->
+<!-- (0) Individual assignment. TODO -->
+<!-- A0 Inhale -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: None -->
+<!-- Description: -->
+<!-- The Bureau of Transport Statistics' On-time Performance (OTP) dataset has information about flights in the USA. The full dataset covers 27 years of air travel and is over 60GB in plain text. For this assignment you should answer the question: Which airlines have the least expensive fares? -->
+<!-- Fine print: -->
+<!-- (0) Individual assignment. (1) Data for one  month is here. (2) Write a sequential Java program reading one gzipped file and writing results on the console. (3) The only output should be the K and F, one per line, where K is the number of corrupt lines of input (lines not in the same format as the rest and lines with flights that do not pass the sanity test),  F is  the number of sane flights. Next, output pairs "C p" where C is a carrier two letter code  and p is the mean price of tickets. Sort the list by increasing price.  (4) The sanity test is: -->
+<!-- CRSArrTime and CRSDepTime should not be zero -->
+<!-- timeZone = CRSArrTime - CRSDepTime - CRSElapsedTime; -->
+<!-- timeZone % 60 should be 0 -->
+<!-- AirportID,  AirportSeqID, CityMarketID, StateFips, Wac should be larger than 0 -->
+<!-- Origin, Destination,  CityName, State, StateName should not be empty -->
+<!-- For flights that not Cancelled: -->
+<!-- ArrTime -  DepTime - ActualElapsedTime - timeZone should be zero -->
+<!-- if ArrDelay > 0 then ArrDelay should equal to ArrDelayMinutes -->
+<!-- if ArrDelay < 0 then ArrDelayMinutes should be zero -->
+<!-- if ArrDelayMinutes >= 15 then ArrDel15 should be true -->
+<!-- (5) Design the code with care as you will reuse it. Document and test it.  (6) The reference solution is ~1KLOC and prints 4083 for K, 435940 for F and, for instance, "UA 545.62".   Processing time is ~5 seconds. (7) Submit your assignment in tar file  Monisha Singh, <msingh28@ccs.neu.edu>. The title of the mail must be "6240-V A0" followed by your name. -->
+<!-- A1 Threading -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A0, Parallelism and consistency -->
+<!-- Description: -->
+<!-- Airfares evolve with time, one month of traffic is not sufficient to answer which airline is the cheapest. Try with two years worth of OTP data. Improve throughput of your code with parallel processing primitives. -->
+<!-- Fine print: -->
+<!-- (0) Individual assignment. (1) The input is "-p -input=DIR" where DIR is the path to a directory containing data files. All files in the directory will be processed. (2) The output is K and F, and a sequence of "C p m"s where m is the median ticket price. Restrict your output to airlines that are active in January 2015. (3) Clean up your code, document and test it. (4) Sample data is here. (5) Values for K and F are 128160 and 12601051. One sample airline is "AS 202.36 171.57". The reference solution is 150LOC additional/changed over A0. Processing time is under a minute.(6) Submit your assignment as a single tar.gz file which unpacks into a directory named "LastName_FirstName_A1".  That directory should contain a README file that explains how to build and run your assignment. -->
+<!-- A2 Distribution -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A1, Distributed programming -->
+<!-- Description: -->
+<!-- As data sizes increase the single machine version does not scale, use Map Reduce to solve A1. -->
+<!-- Fine print: -->
+<!-- (0) Group assignment, two students. (1) Provide code that can run in pseudo-distributed mode as well as on EMR. (3) Produce a graph that plots the average ticket price for each month for each airline.  Use R. No other output is required. (3) Include a script that executes everything and produces the graph. For example, if you use the Unix make command, you should have two targets pseudo and cloud such that typing make pseudo will create a HDFS file system, start hadoop, run your job, get the output, and produce the graph. Typing  make pseudo will run your code on EMR. (4) Only plot airlines with flights in 2015, limit yourself to the 10 airlines with the most flights overall. (5) Information on how to setup AWS is here. (6) Write a one page report that documents your implementation and that describes your results. The report should be automatically constructed as part of running the project to include the plot. (Hint: use LaTeX or Markdown) (7) Submit a tar.gz file which unpacks into a directory name "LastName1_LastName2_A2". That directory should contain a README file that explains how to build and run your code. Make sure that the code is portable. Document what it requires. (8) The reference solution builds off A1, adding 154 lines of Java code and 15 lines of R code. -->
+<!-- A3 Redux -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: Threads, Distributed programming -->
+<!-- Description: -->
+<!-- Compare the cost of computing (A) mean, (B) median, and (C) fast median for (i) single threaded and (ii) multi-threaded Java, as well as (iii) pseudo-distributed MR and (iv) distributed MR. -->
+<!-- Fine print: -->
+<!-- (0) Group assignment, two students. (1) Reuse previous implementations as much as possible. Output "m C v" triples where m identifies the month, C is an airline, and v is the median or mean. (2) Devise your own approach to speed up computation of the median, this may include approximation techniques. If you choose to approximate, make sure to measure accuracy.  (3) Evaluate the performance of the following configurations i-A, i-B, ii-A, ii-B, iii-A, iii-B, iii-C, iv-A, iv-B, iv-C. (4) Create a benchmarking harness that will automatically run all configurations for different input sizes and generate graphs of the performance. The harness should output timings in a CSV file and generate a  PDF using R. (5) Produce a report that describes your conclusions. Use LaTex or similar. (6) The reference solution is 350 lines of Java, 40 lines of R, and 150 line of Make. -->
+<!-- A4 Regression -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: Map Reduce I, Data analysis with R -->
+<!-- Description: -->
+<!-- The price of a ticket depends, in part, on the fuel consumed, figuring out which airline is cheapest requires a little bit of work. Write a MapReduce job that ranks carriers and plots the evolution of prices of the least expensive carrier over time. -->
+<!-- Fine Print: -->
+<!-- (0) Group assignment, two students. (1) Take as input "-time=N" where N is a natural number representing scheduled flight minutes.  (2) For each year and each carrier, estimate the intercept and the slope of a simple linear regression using the scheduled flight time to explain average ticket prices. For a given year, compare carriers at N by computing intercept+slope*N. The least expensive carrier is the carrier with lowest price at N for the most years. (3)  Plot, for each week of the entire dataset, the median price of the least expensive carrier.  (4) The reference solution is 300 LOC of Java with two MR jobs pipelined. (5) Use the full airline dataset form s3://mrclassvitek/data -- it contains 337 files! (6) Produce a report that discusses your results and includes graphs for N=1 and N=200. (7) The reference solution has 300 lines of Java. -->
+<!-- A5 Paths -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: Map Reduce II, Data analysis with R -->
+<!-- Description: -->
+<!-- Compute missed connections for all two-hop paths. -->
+<!-- Fine Print: -->
+<!-- (0) Group assignment, two students. (1) A connection is any pair of flight F and G of the same carrier such as F.Destination = G.Origin and the scheduled departure of G is  <= 6 hours and >= 30 minutes after the scheduled arrival of F. (2) A connection is missed when the actual arrival of F < 30 minutes before the actual departure of G. (3) Optimize your code for performance. (4) Output the number of connections and missed connections per airline, per year. (5) The reference solution outputs "UA, 2013, 2826, 129" when processing the following two files. (6) The reference solution is 239 LOC Java and 10 LOC of R.  The reference solutions takes 5 minutes to run on the full data set (337 files) with a cluster of 10 large machines. (7) Your submission should include code and Makefiles. No data should be included. A report should describe your implementation and detail the timing of your results for at least the two year data set, and, if you dare, the full data set. Include results file for any runs on AWS. The report should be in PDF. -->
+<!-- A6 Prediction -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: Map Reduce II, Data analysis with R -->
+<!-- Description: -->
+<!-- Build a model to predict flight delays. -->
+<!-- Fine print: -->
+<!-- (0) Group assignment, two students. (1) Your program takes as input 36 historical files. Each file is a month of data. You can use these to build a model. (2) You program also take a single test file. This represents all the future flights we want to predict. (3) Output a file containing predictions in the format <FL_NUM>_<FL_DATE>_<CRS_DEP_TIME>, logical. The first column uniquely identifies a flight and the second is TRUE if the flight will be late. (4) Report execution time and the confusion matrix for the provided data. (5) The choice of predictive model is open; you will be graded on the accuracy of your method as well as execution time. One possible choice is to use the Random Forest algorithm. R and Java implementations exist. (6) Input data is to be found in bucked s3://mrclassvitek, in folders a6history and a6test.  The folder a6validate contains a file that has the correct answers for most flights, use it to compute the confusion matrix. (7) As a measure of accuracy, use the sum of the percentage of on-time flights misclassified as delayed and the percentage of delayed flights misclassified as on-time. (8) Some hints for using random forests: (a) split the data and build models for subsets of the entire data set. (b) Recode the data so that the type of each column has at most 50 different values. In R, they should be factors. (c) Delete columns that are not usable for predictions. (d) Synthesize features that you think make sense. For example you could create a column labelled "Holidays" and it would be true when a flight is close to Christmas, New Year, and Thanksgiving. (8) A flight is delayed is ARR_DELAY > 0. -->
+<!-- A7 Routing -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: Map Reduce II, Data analysis with R -->
+<!-- Description: -->
+<!-- Given an origin, a destination and a date, propose two-hops routes that minimize the chance of missed connections. -->
+<!-- Fine print: -->
+<!-- (0) Group assignment, four students. (1) Your program takes 36 history files to build a model, one single test file that contains all scheduled flights for the next year, to create itineraries, and one request file in the following format  year, month, day, origin, destination, ignore. For each request, your program should propose an itinerary, written flight_num, flight_num, duration.  (3) The output of the program is scored as follows: sum the durations in hours. Add 100 hours for each missed connection. (4) Connections must have at least 30 minutes and no more than one hour on the same carrier. (5) The data is in the bucket s3://mrclassvitek, in folders a7history, a7test, a7request and a7validate.  The last directory contains a file which lists missed connections, use it for scoring. (6) The PDF report file should include details about the implementation as well as a study of the performance and accuracy of the solution. A detailed breakdown of what each team member worked should be added. Grading will include the quality of the report. All projects will be code walked. -->
+<!-- A8 Regression in Spark -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A4, Spark: Basics, Data analysis with R -->
+<!-- Description: -->
+<!-- Reimplement A4 in Scala using Spark. -->
+<!-- Fine print: -->
+<!-- (0) Group assignment, four students. (1) Your report should include a detailed comparison of the two solutions in terms of performance and software engineering. -->
+<!-- X9 Paths in Spark -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A8, A5, Spark: Accumulators and broadcast variables -->
+<!-- Description: -->
+<!-- Use the ranking from A8 to create a map of airline prices. Using that map find whether there is a correlation between airline prices and missed connections for two-hop paths. -->
+<!-- Fine print: -->
+<!-- X10 Spark III (TBA) -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A4, Spark: Relational databases -->
+<!-- Description: -->
+<!-- Fine print: -->
+<!-- X11 Spark IV (TBA) -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A4, Spark: Scaling -->
+<!-- Description: -->
+<!-- Fine print: -->
+<!-- X12 Spark V (TBA) -->
+<!-- Time: 1 week -->
+<!-- Prerequisites: A4, Spark: Streaming -->
+<!-- Description: -->
+<!-- Fine print: -->
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
