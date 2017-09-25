@@ -71,7 +71,7 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 |OS06 | _Bigtable: A Distributed Storage System for Structured Data_,  Chang+, __OSDI06__ |[link](http://static.googleusercontent.com/media/research.google.com/en/us/archive/bigtable-osdi06.pdf) |
 |R+12 | _Nobody ever got fired for using Hadoop on a cluster_,  Rowstron+        | [link](http://research.microsoft.com/pubs/179615/msrtr-2013-2.pdf) |
 |A+15 | _Spark SQL: Relational Data Processing in Spark_,   Armburst+, __SIGMOD15__ |[link](https://amplab.cs.berkeley.edu/wp-content/uploads/2015/03/SparkSQLSigmod2015.pdf) |
-|O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | [link](https://amplab.cs.berkeley.edu/wp-content/uploads/2015/03/SparkSQLSigmod2015.pdf) |
+|O+14 | _Processing Theta-Joins using MapReduce_,        Okcan+ __SIGMOD11__        | [link](https://dl.acm.org/citation.cfm?id=1989423) |
 |AD15 | _Scaling spark in the real world: performance and usability_, Armburst+, __VLDB15__ |[link](https://people.csail.mit.edu/matei/papers/2015/vldb_spark.pdf) |
 |JMM  | _The Java Memory Model FAQ_  |[link](http://www.cs.umd.edu/~pugh/java/memoryModel/jsr-133-faq.html)|
 |B+16| _SystemML: Declarative Machine Learning on Spark_, M. Boehm et al., __VLDB16__ |[link](http://www.vldb.org/pvldb/vol9/p1425-boehm.pdf)|
