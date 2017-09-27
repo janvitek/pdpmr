@@ -32,7 +32,8 @@ Required files:
   * `Makefile` (Configuration file for the make command with the following rules: `build` — builds all the implementations, `run` — runs the variants and generate the report, `all` – build and run; be sure that `build` works on somebody else's machine)
   * `report.Rmd` (The report as described in the previous section)
   * `report.html` (An HTML rendering of `report.Rmd`)
-  * `input/` (A directory containing input files used in the report; please `gzip` all text files to save space)
+  * `input/books/` (A directory containing input files used in the report for A0/A1; please `gzip` all text files to save space)
+  * `input/big-corpus/` (An *empty* directory. Keep your copy of the big corpus there, but *do not* push it to git. A code reviewer will put their own copy of the corpus there too.)
     
 **Submissions not adhering to the prescribed structure will be penalized.**
 
