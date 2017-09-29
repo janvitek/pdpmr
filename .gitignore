@@ -34,3 +34,15 @@ vignettes/*.pdf
 .Rproj.user
 
 f17/tasks.html
+
+f17/tasks-a0-neighborhood-score.html
+
+f17/tasks-a2-neighborhood-score-map-reduce.html
+
+f17/tasks-a3-neighborhood-score-reloaded.html
+
+f17/tasks-a1-neighborhood-score-benchmarking.html
+
+f17/about.html
+
+f17/index.html
