@@ -1,0 +1,16 @@
+---
+title: "A3 - Neighborhood Score: Reloaded"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is an opportunity to revisit your implementation and report for A2. 
+
+The only new requirements for this week are:
+  * *also* the performance on AWS running on 2 and 4 nodes.
+  * return the *median* rather than the mean score of each word's k-neighborhoods.
+
+Everything else is unchanged. Include in your report a description of the changes that you had to make to your  code to support returning the median.
