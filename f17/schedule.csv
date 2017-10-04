@@ -10,7 +10,7 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews,Contents,
 5,10/6,Friday,Beyond Map Reduce,HTDG 16-18,A3,,Scale up vs scale out, Model prediction  Using R for prediction
 6,10/10,Tuesday,Data-parallel pipelines,"HTDG 18, FJ10",,,Crunch and Flume,
 6,10/13,Friday,Midterm evaluation,—,A4,,—,
-7,10/17,Tuesday,Scala: an Introduction,—,,A4,, Key/value RDDs  Loading and saving data
+7,10/17,Tuesday,Scala: an Introduction,O+04,,A4,, Key/value RDDs  Loading and saving data
 7,10/20,Friday,Spark: Basics,"HTDG 19, Z+12",A5,,RDDs,
 8,10/24,Tuesday,Spark: Basics,KKWZ 1-6,,A5,," Applications  Consistency and fault tolerance. ""Broadcast variables: Applications  Consistency"""
 8,10/27,Friday,Spark: Accumulators and broadcast variables,"KKWZ 9, OS6",A6,,"Accumulators:, Loading/saving data, Performance",

@@ -77,4 +77,4 @@ A _code review_ is conducted after each task. Teams review other teams' work, co
 |B+16| _SystemML: Declarative Machine Learning on Spark_, M. Boehm et al., __VLDB16__ |[link](http://www.vldb.org/pvldb/vol9/p1425-boehm.pdf)|
 |M+16| _dmapply: A functional primitive to express distributed machine learning algorithms in R_, Ma et al. __VLDB16__ | [link](http://dl.acm.org/citation.cfm?id=3007268) |
 |S+16| _Titian: Data Provenance Support in Spark_, Shah et al., __VLDB16__ | [link](http://www.vldb.org/pvldb/vol9/p216-interlandi.pdf) |
-
+|O+04| _An Overview of the Scala Programming Language_, Odersky et al., __LAMP TR__ | [link](http://lampwww.epfl.ch/~odersky/papers/ScalaOverview.html) |
