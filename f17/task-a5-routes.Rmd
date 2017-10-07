@@ -1,0 +1,20 @@
+---
+title: "A5 -- Routing"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Given an origin, a destination and a date, propose two-hops routes that minimize the chance of missed connections. 
+
+## Fine print: 
+
+  * Your program takes data  files to create model, one single test file that contains all scheduled flights year, to create itineraries, and one request file in the following format  year, month, day, origin, destination, ignore. For each request, your program should propose an itinerary, written flight_num, flight_num, duration.  
+ * The output of the program is scored as follows: sum the durations in hours. Add 100 hours for each missed connection. 
+ * Connections must have at least 30 minutes and no more than one hour on the same carrier. 
+ *  The data is in the bucket s3://mrclassvitek, in folders a7history, a7test, a7request and a7validate.  
+ * The last directory contains a file which lists missed connections, use it for scoring. 
+ *  The PDF report file should include details about the implementation as well as a study of the performance and accuracy of the solution. A detailed breakdown of what each team member worked should be added. Grading will include the quality of the report. All projects will be code walked.

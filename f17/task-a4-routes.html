@@ -202,7 +202,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>We will explore the world of airline on-time performance data analysis. Your task will be to implement a pipeline that runs a set of pseudo distributed map reduce tasks to plot the mean delay of the five most active airlines and for the five most active airports in the country. Specifically, your code should take a set of data files as input and produce visualizations of delays. You are free to choose how to visualize delays, how many graphs you want to produce, etc. You will be asked to defend your choice.</p>
+<p>We will explore the world of airline on-time performance data analysis. Your task will be to implement a pipeline that runs a set of pseudo distributed map reduce tasks to plot the average delay of the five most active airlines and for the five most active airports in the country. Specifically, your code should take a set of data files as input and produce visualizations of delays. You are free to choose how to visualize delays, how many graphs you want to produce, etc. You will be asked to defend your choice.</p>
 <div id="expected-elements-of-a-solution" class="section level2">
 <h2>Expected elements of a solution:</h2>
 <ul>
@@ -210,16 +210,16 @@ $(document).ready(function () {
 <li>One or more map reduce tasks that read and clean the data, any corrupt row can be deleted, and output data that can be used to generate a graph</li>
 <li>A R Markdown file that includes code to generate graphs from the output of the MR task and explanation of the results.</li>
 <li>Make sure to include all JAR files needed to build your code and to only use local paths.</li>
-<li>It should be possible to run the pseudo distributed version of your code with a single local data file easily</li>
+<li>It should be possible to run the pseudo distributed version of your code with a singl local data file easily</li>
 </ul>
 </div>
 <div id="fine-print" class="section level2">
 <h2>Fine print</h2>
 <ul>
 <li>Data for one month is <a href="https://drive.google.com/open?id=0B2Yl023GVEqHZnVBbWV3TGNibmM">here</a></li>
-<li>The full data set will be made available on AWS</li>
+<li>The full data set will be made avialable on AWS</li>
 <li>Some helpful code will be shared via piazza</li>
-<li>A description of the fields in the data is <a href="https://www.bts.gov">here</a> (Look for online time performance of airlines)</li>
+<li>A description of the fields in the data is <a href="https://www.transtats.bts.gov/Fields.asp">here</a></li>
 <li>The sanity test is for corrupt data (field names may vary slightly)</li>
 </ul>
 <pre class="r"><code>All rows should be of the same length
@@ -235,12 +235,12 @@ if ArrDelay &gt; 0 then ArrDelay should equal to ArrDelayMinutes
 if ArrDelay &lt; 0 then ArrDelayMinutes should be zero
 if ArrDelayMinutes &gt;= 15 then ArrDel15 should be true</code></pre>
 <ul>
-<li>Aggregate flights per month (i.e. add up all flight delays in a month for each airline and destination)</li>
 <li>Use the destination airport for each flight</li>
 <li>If there are several airlines or airports with the same number of flights, use lexicographical sort</li>
 <li>A cancelled flight counts as being delay 4 times the CSRElapsedTime (i.e. its scheduled length)</li>
 <li>Rather than using delay in minutes, normalize the delay with respect to the scheduled length of each flight</li>
-<li>In your visualization show the mean delay per flight, month, airline and destination</li>
+<li>Plot average delay per flight</li>
+<li>Aggregate flights per month</li>
 </ul>
 </div>
 

@@ -11,7 +11,7 @@
 
 
 
-<title>A4 - On-Time Performance Data</title>
+<title>A5 – Routing</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,50 +197,23 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">A4 - On-Time Performance Data</h1>
+<h1 class="title toc-ignore">A5 – Routing</h1>
 
 </div>
 
 
-<p>We will explore the world of airline on-time performance data analysis. Your task will be to implement a pipeline that runs a set of pseudo distributed map reduce tasks to plot the mean delay of the five most active airlines and for the five most active airports in the country. Specifically, your code should take a set of data files as input and produce visualizations of delays. You are free to choose how to visualize delays, how many graphs you want to produce, etc. You will be asked to defend your choice.</p>
-<div id="expected-elements-of-a-solution" class="section level2">
-<h2>Expected elements of a solution:</h2>
-<ul>
-<li>A Makefile that builds and runs the pipeline (including graph generation);</li>
-<li>One or more map reduce tasks that read and clean the data, any corrupt row can be deleted, and output data that can be used to generate a graph</li>
-<li>A R Markdown file that includes code to generate graphs from the output of the MR task and explanation of the results.</li>
-<li>Make sure to include all JAR files needed to build your code and to only use local paths.</li>
-<li>It should be possible to run the pseudo distributed version of your code with a single local data file easily</li>
-</ul>
-</div>
+<p>Given an origin, a destination and a date, propose two-hops routes that minimize the chance of missed connections.</p>
 <div id="fine-print" class="section level2">
-<h2>Fine print</h2>
+<h2>Fine print:</h2>
 <ul>
-<li>Data for one month is <a href="https://drive.google.com/open?id=0B2Yl023GVEqHZnVBbWV3TGNibmM">here</a></li>
-<li>The full data set will be made available on AWS</li>
-<li>Some helpful code will be shared via piazza</li>
-<li>A description of the fields in the data is <a href="https://www.bts.gov">here</a> (Look for online time performance of airlines)</li>
-<li>The sanity test is for corrupt data (field names may vary slightly)</li>
-</ul>
-<pre class="r"><code>All rows should be of the same length
-All columns should hold one type of values
-CRSArrTime and CRSDepTime should not be zero
-timeZone = CRSArrTime - CRSDepTime - CRSElapsedTime;
-timeZone % 60 should be 0
-AirportID,  AirportSeqID, CityMarketID, StateFips, Wac should be larger than 0
-Origin, Destination,  CityName, State, StateName should not be empty
-For flights that are not Cancelled:
-ArrTime -  DepTime - ActualElapsedTime - timeZone should be zero
-if ArrDelay &gt; 0 then ArrDelay should equal to ArrDelayMinutes
-if ArrDelay &lt; 0 then ArrDelayMinutes should be zero
-if ArrDelayMinutes &gt;= 15 then ArrDel15 should be true</code></pre>
-<ul>
-<li>Aggregate flights per month (i.e. add up all flight delays in a month for each airline and destination)</li>
-<li>Use the destination airport for each flight</li>
-<li>If there are several airlines or airports with the same number of flights, use lexicographical sort</li>
-<li>A cancelled flight counts as being delay 4 times the CSRElapsedTime (i.e. its scheduled length)</li>
-<li>Rather than using delay in minutes, normalize the delay with respect to the scheduled length of each flight</li>
-<li>In your visualization show the mean delay per flight, month, airline and destination</li>
+<li>Your program takes data files to create model, one single test file that contains all scheduled flights year, to create itineraries, and one request file in the following format year, month, day, origin, destination, ignore. For each request, your program should propose an itinerary, written flight_num, flight_num, duration.<br />
+</li>
+<li>The output of the program is scored as follows: sum the durations in hours. Add 100 hours for each missed connection.</li>
+<li>Connections must have at least 30 minutes and no more than one hour on the same carrier.</li>
+<li>The data is in the bucket s3://mrclassvitek, in folders a7history, a7test, a7request and a7validate.<br />
+</li>
+<li>The last directory contains a file which lists missed connections, use it for scoring.</li>
+<li>The PDF report file should include details about the implementation as well as a study of the performance and accuracy of the solution. A detailed breakdown of what each team member worked should be added. Grading will include the quality of the report. All projects will be code walked.</li>
 </ul>
 </div>
 
