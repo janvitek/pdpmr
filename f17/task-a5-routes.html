@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -202,17 +202,16 @@ $(document).ready(function () {
 </div>
 
 
-<p>Given an origin, a destination and a date, propose two-hops routes that minimize the chance of missed connections.</p>
+<p>This assignment will have you do a little machine learning. Giving historical airplane on time performance data, you will offer suggestions for two-hop flights that minimize the chance of missing a connection.</p>
 <div id="fine-print" class="section level2">
 <h2>Fine print:</h2>
 <ul>
-<li>Your program takes data files to create model, one single test file that contains all scheduled flights year, to create itineraries, and one request file in the following format year, month, day, origin, destination, ignore. For each request, your program should propose an itinerary, written flight_num, flight_num, duration.<br />
-</li>
-<li>The output of the program is scored as follows: sum the durations in hours. Add 100 hours for each missed connection.</li>
-<li>Connections must have at least 30 minutes and no more than one hour on the same carrier.</li>
-<li>The data is in the bucket s3://mrclassvitek, in folders a7history, a7test, a7request and a7validate.<br />
-</li>
-<li>The last directory contains a file which lists missed connections, use it for scoring.</li>
+<li>Input: A list of tuples of Year, Month, Day, Origin, Destination (e.g. 2001, 09, 11, DEN, DCA) where Year is the same for all tuples</li>
+<li>Ouput: a list of proposed flights (e.g. [(2001,09,11, 1256, 1222, UA, DEN, ORD),(2001,09,11,1910,UA, ORD, DCA)])</li>
+<li>Scoring: 1 point per hour of the proposed initinerary if the flights arrive on time at the destination, -100 per proposed itinerary that does not arrive on time or is cancelled</li>
+<li>You can use data form previous years to build a model of flight delays, you are not allowed to use data from the Year requested in the model</li>
+<li>Do not return direct flights</li>
+<li>Connections must have at least 45 minutes between landing and takeoff, and no more than 12 hours</li>
 <li>The PDF report file should include details about the implementation as well as a study of the performance and accuracy of the solution. A detailed breakdown of what each team member worked should be added. Grading will include the quality of the report. All projects will be code walked.</li>
 </ul>
 </div>
@@ -240,7 +239,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
