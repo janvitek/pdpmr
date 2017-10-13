@@ -13,7 +13,7 @@ This assignment will have you do a little machine learning.  Giving historical a
 ## Fine print: 
   * Input:   A list of tuples of Year, Month, Day, Origin, Destination (e.g. 2001, 09, 11, DEN, DCA)  where Year is the same for all tuples
   * Ouput:   a list of proposed flights (e.g.  [(2001,09,11, 1256, 1222, UA, DEN, ORD),(2001,09,11,1910,UA, ORD, DCA)])
-  * Scoring: 1 point per hour of the proposed initinerary if the flights arrive on time at the destination, -100 per proposed itinerary that does not arrive on time or is cancelled
+  * Scoring: 1 point per flight if the flight arrives on time at the destination, -100 per proposed flight that does not arrive on time or is cancelled
   * You can use data form previous years to build a model of flight delays, you are not allowed to use data from the Year requested in the model
   * Do not return direct flights
   * Connections must have at least 45 minutes between landing and takeoff, and no more than 12 hours
