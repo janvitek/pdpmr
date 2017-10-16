@@ -1,0 +1,12 @@
+---
+title: "Notes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+| Title                                                                             | Lecture date   |
+| :-------------------------------------------------------------------------------- | :------------- |
+| [Scala: an Introduction](notes/scala.html)                                        | 10/17/17       |

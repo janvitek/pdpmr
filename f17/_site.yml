@@ -9,6 +9,8 @@ navbar:
       href: about.html
     - text: "Tasks"
       href: tasks.html
+    - text: "Notes"
+      href: notes.html
       
 output:
   html_document:

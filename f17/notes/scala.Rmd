@@ -1,0 +1,1477 @@
+---
+title: "Scala: an Introduction"
+output: 
+  #slidy_presentation:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<center>![Hieronymus Bosch. A visual guide to the Scala language. Oil on oak panels, 1490-1510. [[source]](http://classicprogrammerpaintings.tumblr.com/)](bosch.jpg)</center>
+
+*The left panel shows the functional features, the main one describes the type system, and the right the object oriented parts.* 
+
+----
+
+# Overview
+
+  * Object-oriented programming paradigm
+  * Strong types, type inference
+  * Pattern matching
+  * Traits
+  * Higher-order functions
+  * Partial application
+  * Closures
+  * Tail recursion
+  * Runs on JVM
+  * Oriented towards concurrency, parallelism, and distributed programming
+  * Implicits
+  
+----
+
+# Some useful tools and things
+
+REPL:
+
+  * ``sbt console`` (from Scala Build Tools)
+  * ``scala``
+  
+IDE:
+
+  * [Scala IDE](http://scala-ide.org/) (Eclipse)
+  * [IntelliJ IDEA](http://www.jetbrains.com/idea/features/scala.html)
+  
+Other:
+
+  * [Scala Build Tools](http://www.scala-sbt.org/) (although we still insist you use ``make``)
+  
+Style guide (please use):
+
+  * [Scala Style Guide](http://docs.scala-lang.org/style/method-invocation.html)  
+  
+----
+  
+# Types
+
+Basic types:
+
+  * ``Boolean``
+  * ``Char``
+  * ``Int``, ``Long``, ``Short``, ``Byte``
+  * ``Double``, ``Float``
+  * ``String``
+  * ``Symbol``
+  * ``Unit``
+  
+Functions:
+
+  * `Int => Int`
+  * `Int => Int => Int`
+  * `Int => Unit`
+  
+Tupples:
+
+  * `(Int, Int)`
+  
+----
+  
+Aliasing:
+
+```scala
+type Identifier = Int
+type Callback = Int => Int
+type Vector3D = (Int, Int, Int)
+```
+
+Unit:
+
+```scala
+val u: Unit = ()
+```
+
+Null:
+
+```scala
+val n: Null = null
+val s: String = null
+```
+
+----
+    
+# Selected operators
+
+  * Arithmetic: ``+ - / % *``
+  * Relational and logical: ``< > <= >= || && != ! ==``
+  * Bit-wise: ``& | ^ ~ >> << >>>`` (unsigned right shift)
+  * Assignment: ``= *= += -= /=`` ...
+  
+[Full list of operators](http://jim-mcbeath.blogspot.com/2008/12/scala-operator-cheat-sheet.html)
+
+----
+
+# Variables, values and function definitions
+
+## Value declaration/definition
+
+```scala
+val x = 5
+val s = "spaceship"
+val y : Int = 0
+```
+
+Evaluated at definition. Cannot redefine.
+
+```scala
+x = x + 1
+```
+```
+<console>:4: error: reassignment to val
+```
+
+----
+
+## Variable declaration/definition
+
+```scala
+var x = 5 
+var s = "spaceship"
+```
+
+Evaluated at definition. Can redefine.
+
+```scala
+x = x + 1
+s = "whoosh"
+```
+
+Default value of variable:
+
+```scala
+var x: Int = _
+var y: Boolean = _
+var s: String = _
+var z: Any = _
+```
+
+----
+
+## Function declaration/definition
+
+```scala
+def f = 1
+def g = 1 + f
+def h = (x: Int) => 1 + x
+def h: Int => Int = (x) => 1 + x
+```
+
+Evaluated on use (Every time). Can redefine.
+
+Limits of type inference:
+
+```scala
+def h = (x) => 1 + x
+```
+
+```
+<console>:7: error: missing parameter type
+       def h = (x) => 1 + x
+```
+
+**When to use `val` , `var`, `def`? Why?**
+
+----
+
+# Objects
+
+Everything is an object:
+
+```scala
+5.toString()
+```
+
+Operators are instance methods:
+
+```scala
+val x, y = 2
+
+x + y
+x.+(y)
+```
+
+----
+
+## Simplifying emthod calls
+
+Removing parentheses from method calls:
+
+```scala
+val x = 2
+x.toString()
+x.toString      // <==
+x toString
+```
+
+**Style guide**: arity 0, pure methods only (no side effects).
+
+Infix notation:
+
+```scala
+val s = "something something spaceship"
+s.split(" ")
+s split(" ")
+s split " "     // <==
+```
+
+**Style guide**: arity 1, pure methods only (no side effects). Use especially if the argument is a function.
+
+----
+
+# Code blocks
+
+Definition:
+
+```scala
+{ /*...*/ }
+```
+
+A block returns the last evaluated value:
+
+```scala
+{ 2 + 2 }
+{ val x = 2; x }
+{ val x = 2; val y = 2; x + y }
+{ println("x") }
+```
+
+Variable scope and blocks:
+
+```scala
+val x = { 2 + 2 }       // x → 4
+val y = { x + 2 }       // y → 6
+    
+{ val xx = 8; xx }      // x → 8
+xx                      // explosion
+                       
+{ x; val x = 8 }        // explosion
+```
+----
+
+# Methods, functions, and partial functions
+
+## Methods
+
+Method definition (in the current object).
+
+```scala
+def increment(x: Int): Int = {
+  return x + 1
+}
+
+def increment(x: Int): Int = {
+  x + 1
+}
+
+def increment(x: Int) = {
+  x + 1
+}
+
+def increment(x: Int) {x + 1}       // → unit
+
+def increment(x: Int) = x + 1
+```
+
+----
+
+Unit argument:
+
+```scala
+def f() = 5
+def g() = ()
+```
+
+Parameter with default values:
+
+```scala
+def add(x: Int, y: Int = 1) = x + y 
+    
+add(1, 1)
+add(1)
+```
+
+Multiple parameter groups and partial application:
+
+```scala
+var debugLevel = 5
+def debug(level: Int)(message: String) { if (level >= debugLevel) println(message) }
+
+debug(5)("a thing is happening")
+
+val warn = debug(0) _
+val error = debug(10) _
+
+warn("a meh thing is happening")
+error("a bad thing is happening")
+```
+
+----
+
+Method nesting:
+
+```scala
+def outer(x: Int) = {
+  def inner(y: Int) = y + x
+  inner(x)
+}
+```
+
+----
+
+## Functions
+
+Function (lambda) definitions:
+
+```scala
+(x: Int) => x + 1
+() => println("Hello World!")
+  
+val f1 = (x: Int) => x + 1
+f1(5)
+
+val f2 = () => println("Hello World!")
+f2()  
+```
+
+Functions are anonymous.
+
+Functions are objects:
+
+```scala
+val f1 = (x: Int) => x + 1
+
+f1.apply(1)
+f1.toString
+```
+
+----
+
+### Converting between functions and methods
+
+Explicit method to function conversion:
+
+```scala
+def increment(x: Int) = {x + 1}
+val f = increment _             // η-conversion aka eta-conversion aka magic
+
+val fs = "s".toString _
+fs()
+```
+
+Automatic conversion:
+
+```scala
+def increment(x: Int) = {x + 1}
+    
+increment.apply(1)
+increment.toString
+
+val x = increment
+x(1)
+x.apply(1)
+x.toString()
+```
+
+**Watch out when converting arrity 0 methods.**
+
+----
+
+### Function composition
+
+```scala
+val f = (x: Int) => x * x
+val g = (x: Int) => x + 1
+
+f(g(1))                     // (x + 1) * (x + 1) = 4
+(f compose g)(1)            // (x + 1) * (x + 1) = 4
+
+g(f(1))                     // (x * x) + 1 = 2
+(f andThen g)(1)            // (x * x) + 1 = 2
+```    
+
+----
+
+### Partial application:
+
+```scala
+val sum = (a: Int, b: Int, c: Int) => a + b + c
+
+val f1 = sum(1, 2, _: Int)
+val f2 = sum(1, _: Int, _: Int)
+
+f1(1)
+f2(1, 1)
+```
+
+----
+
+## Partial functions
+
+```scala
+val typeOf: Any => String = {
+  case x: Int => "Int"
+  case x: Double => "Double"
+}
+
+typeOf(1)
+typeOf(1.0)
+typeOf("spaceship")
+```
+
+```
+scala.MatchError: spaceship (of class java.lang.String)
+  at $anonfun$1.apply(<console>:7)
+  at $anonfun$1.apply(<console>:7)
+  ... 33 elided
+```
+
+----
+
+### Higher-order and first-class functions
+
+**First class functions** can be treated as values: assigned to variables, passed by arguments.  
+
+```scala
+val a = (x: Int) => x + 1
+val b = a
+```
+
+**Higher order function** can accept functions as arguments and/or return functions.
+
+```scala
+val f = (x: Int) => (y: Int) => x + y
+val g = (x: Int) => { val z = x + 1; (y: Int) => z + y }
+val h = (fun: Int => Int) => fun(1)
+```
+
+----
+
+# Classes
+
+## Definition
+
+Minimal definition:
+
+```scala
+class Enterprise() {}
+```
+
+Default constructor (creates fields, executes code):
+
+```scala
+class Enterprise() {                        // primary constructor
+  val version = "NCC-1701"
+  val captain = "Kirk, J. T."
+          
+  val maxShields = 100
+  var shieldDmg = 0
+        
+  def shieldLvl() = {maxShields - shieldDmg}
+
+  println("Split all the infinitives!")
+}
+```
+
+----
+
+Creating objects:
+
+```scala
+val enterprise = new Enterprise()
+```
+
+----
+
+## Field visibility
+
+* ``private`` - private (visible to class)
+* ``private[package]`` - private (visible to package)
+* ``private[this]`` - private (visible to instance)
+* ``protected`` - protected (visible to class and subclasses)
+* ``protected[package]`` - protected (visible to package)
+* ``protected[this]`` - protected (visible to instance)
+* ``public``
+
+Default visibility is ``public``.
+
+----
+
+## `private` vs `private[this]`
+
+Access in any instance of the class with ``private``
+
+```scala
+class Spaceship {
+  private val name = "USS Enterprise"
+    
+  def compare (e: Spaceship): Boolean = e.name == this.name
+}
+```
+
+Access only within instance:
+
+```scala
+class Spaceship {
+  private[this] val name = "USS Enterprise"
+  def getName() = name
+    
+  def compare (e: Spaceship): Boolean = e.getName() == this.name
+}
+```
+
+----
+
+## Constructor Arguments
+
+```scala
+
+class Enterprise(ver: String, capt: String) {
+  val version = ver
+  val captain = capt
+          
+  val maxShields = 100
+  var shieldDmg = 0
+        
+  def shieldLvl() = {maxShields - shieldDmg}
+}
+
+val enterprise = new Enterprise("NCC-1701", "Kirk, J. T.")
+enterprise.shieldDmg = 10
+enterprise.shieldLvl()
+enterprise.shieldLvl
+```
+
+----
+
+## Argumentless methods
+
+```scala
+class Enterprise(ver: String, capt: String) {
+  def version = ver
+  def captain = capt
+          
+  val maxShields = 100
+  var shieldDmg = 0
+        
+  def shieldLvl = {maxShields - shieldDmg}
+}
+
+val enterprise = new Enterprise("NCC-1701", "Kirk, J. T.")
+enterprise.shieldDmg = 10
+enterprise.shieldLvl
+```
+
+----
+
+## Additional constructors
+
+```scala
+class Enterprise(ver: String, capt: String) {
+  def this() = {
+    this("NCC-1701", "Kirk, J. T.")        // First expression in method
+  }
+}
+```
+
+----
+
+## Inheritence and overloading
+
+```scala
+abstract class Constitution() {     // extends AnyRef
+  def shipClass = "Constitution"    // or val
+  def shipName = {}
+}
+    
+class Enterprise(ver: String, capt: String) extends Constitution {
+  override def shipName = "Enterprise"
+}
+```
+
+----
+
+## Variable overloading:
+
+```scala
+abstract class Constitution() { // extends AnyRef
+  var shipClass = "Constitution"
+  def shipName = {}
+}
+    
+class Enterprise(ver: String, capt: String) extends Constitution {
+  override var shipClass = "Enterprise"
+}
+```
+
+```
+<console>:9: error: overriding variable shipClass in class Constitution of type java.lang.String;
+variable shipClass cannot override a mutable variable
+           override var shipClass = "Enterprise"
+                        ^
+```
+
+----
+
+## Multiple inheritance though traits
+
+```scala
+trait WarpSpeedCapability {
+  var currentSpeed = 0
+  def setCruisingSpeed = { currentSpeed = 2 }
+  def setMaximumWarp = { currentSpeed = 9 }
+}
+
+class Enterprise(ver: String, capt: String) extends Constitution with WarpSpeedCapability {
+  override def shipName = "Enterprise"
+}
+```
+
+----
+
+Solving conflicts:
+
+```scala
+trait AuxiliaryCraft {
+  val awayTeamType = "shuttlecraft"
+  def sendAwayTeam = {
+    // ...
+  }
+}
+    
+trait Transporter {
+  val awayTeamType = "transporter"
+  def sendAwayTeam = { 
+    // ...  
+  }
+}    
+
+class Enterprise(ver: String, capt: String) extends AuxiliaryCraft with Transporter {
+  override def awayTeamType = "transporter or shuttlecraft"
+  override def sendAwayTeam = { 
+    // ... 
+  }
+}
+```
+
+----
+
+Unreconcileable conflict:
+
+```scala
+
+trait AuxiliaryCraft {
+  var isAwayTeamSent = false
+  def sendAwayTeam = {
+    // ...
+  }
+}
+    
+trait Transporter {
+  var isAwayTeamSent = false
+  def sendAwayTeam = { 
+    // ...  
+  }
+}    
+
+class Enterprise(ver: String, capt: String, maxShld: Int) extends AuxiliaryCraft with Transporter {
+  override def sendAwayTeam = { 
+    // ... 
+  }
+}
+```
+
+```
+<console>:9: error: class Enterprise inherits conflicting members:
+  variable isAwayTeamSent in class AuxiliaryCraft$class of type Boolean  and
+  variable isAwayTeamSent in class Transporter$class of type Boolean
+(Note: this can be resolved by declaring an override in class Enterprise.);
+ other members with override errors are: isAwayTeamSent_=
+```
+
+----
+
+## Operator overloading
+
+```scala
+class C {
+  def < (that: Any): Boolean = {
+    // ...
+  }
+}
+```
+
+----
+
+# Static objects
+
+Static object definition (*singleton*):
+
+```scala
+object universe {
+  val age: Long = 45L
+  def getBlackHoles() = { 
+    // ...
+  }
+}
+```
+
+Scala does not allow creating static elements outside of static objects.  
+
+Static objects are created on first use.  
+
+Companion object (*pattern*):
+
+```scala
+class Shipyard {
+  def makeShip = ???
+}
+    
+object Shipyard {
+  def makeShipyard = ???
+  def getAllShipyards = ???
+}
+```
+
+----
+
+Defining `main` functions:
+
+```scala
+object Something {
+  def main(args: Array[String]) {
+    // Code goes here.  
+  }
+}
+```
+
+```scala
+object Something extends App {
+  // Code goes here.
+}
+```
+
+----
+
+## Generics
+
+```scala
+class RefCell[T] {
+  private var obj: T = _
+  def get: T = { obj }
+  def set(value: T) = { obj = value }
+}
+    
+val s = new RefCell[String]
+s set "HelloWorld"
+s get
+
+val x = new RefCell[Int]
+x set 5
+x get
+```
+
+<!--*Stack[T] is only a subtype of Stack[S] if and only if S = T*: [variance](http://docs.scala-lang.org/tutorials/tour/variances.html)-->
+
+----
+
+# Collections
+
+*Immutable*:
+* tuples
+* lists
+* sets
+* maps
+* strings
+    
+*Mutable*:
+
+* tables
+* sets
+* lists
+* queues
+* stacks
+* string builders
+
+----
+
+## Immutable
+
+### Tupples
+
+```scala
+val pair = ("alpha", "beta")
+val triple = ("alpha", "beta", "gamma")
+
+val x = pair _1
+val y = pair _2
+    
+val (x,y) = pair
+
+val riap = pair swap
+
+val pair = "alpha" -> "beta"
+```
+
+----
+
+### Lists
+
+```scala
+val c = List(1, 2, 3, 4)
+val c = 1 :: 2 :: 3 :: 4 :: Nil
+val c = List(1, 2) ::: List(3, 4)
+
+c(0)
+
+c head
+c tail
+c last
+c isEmpty
+c length
+
+c reverse
+c iterator
+  
+c slice (0, 2)
+```
+
+----
+
+### Sets
+
+```scala
+val s = Set(1, 2, 3, 4, 4)
+    
+s(1)
+s contains 1
+
+s - 1
+s + 5
+s + (6,7)
+s empty
+
+val a = Set(1, 2, 3, 4)
+val b = Set(3, 4, 5, 6)
+
+a union b       // union
+a | b           // union 
+a ++ b          // union
+
+a subsetOf b
+
+a intersect b   // intersection
+a & b           // intersection
+
+a diff b        // difference
+a &~ b          // difference
+a -- b          // difference
+```
+
+----
+
+### Ranges
+
+```scala
+val r = Range(0, 10)
+
+r(0)
+
+val r = 1.to(10)
+val r = 1.until(10)
+
+val r = 1 to 10
+val r = 1 until 10
+
+r reverse
+r iterator
+```
+
+----
+
+### Maps
+
+```scala
+val m = Map("a" -> 1, "b" -> 2)
+val m = Map(("a", 1), ("b", 2))
+
+m("a")
+m get "a"
+
+m get "x"
+m getOrElse ("x", -1)
+
+m contains "a"
+    
+m + ("c" -> 3)
+m + ("c" -> 3, "d" -> 4)
+
+m ++ Map("c" -> 3, "d" -> 4)
+
+m - "a"
+m - ("a", "b")
+
+m -- Map("c" -> 3, "d" -> 4)
+
+m keys
+m values
+```
+
+----
+
+## Mutable
+
+### Tables
+
+```scala
+val arr = new Array[String](3)
+
+arr(0) = "ala"
+arr(1) = "ma"
+arr(2) = "kota"
+
+val arr = Array("ala", "ma", "kota")
+
+val cube = ofDim[Int](3,3)
+cube(0,0) = 1
+```
+
+----
+
+### Mutable versions of immutable collections
+
+```scala
+import scala.collection.mutable.LinkedList
+import scala.collection.mutable.Set
+import scala.collection.mutable.Map
+import scala.collection.mutable.StringBuilder
+
+val s : StringBuilder = new StringBuilder()
+
+s append "a"
+s ++= "b"
+
+println(s.mkString)
+```
+
+----
+
+## Generic collections
+
+```scala
+val ls : List[String] = "a" :: "b" :: "c" :: Nil
+```
+
+Covariance: *If A is a subtype of B then T[A] is a subtype of T[B].*
+
+```scala
+class Animal {}
+class Dog extends Animal {}
+
+val animals : List[Animal] = new Dog() :: new Dog() :: Nil
+```
+
+----
+
+## Folds
+
+### Fold function
+
+```scala
+def fold[A1 >: A](z: A1)(op: (A1, A1) => A1): A1
+
+val l = List(1, 1, 1 ,1 ,1)
+l.fold(0)((acc: Int, elem: Int) => acc + elem)
+
+val ll = List(List(1, 1, 1), List(2, 2, 2))
+ll.fold(List[Int]())((acc: List[Int], elem: List[Int]) => acc ::: elem)
+```
+
+Specified folding order:
+
+```scala
+def foldLeft[B](z: B)(op: (B, A) => B): B
+def foldRight[B](z: B)(f: (A, B) => B): B
+
+val l = List(1, 2, 3 ,4 ,5)
+l.foldLeft(0)((acc: Int, elem: Int) => {println(acc+"+"+elem); acc + elem})
+l.foldRight(0)((elem: Int, acc: Int) => {println(acc+"+"+elem); acc + elem})
+
+l.foldLeft(List[Int]())((acc: List[Int], elem: Int) => elem :: acc)
+l.foldRight(List[Int]())((elem: Int, acc: List[Int]) => elem :: acc)
+``` 
+
+----
+
+### Reduce
+
+```scala
+val l = List(1, 2, 3 ,4 ,5)
+l reduce { (acc, elem) => acc + elem }
+l reduceLeft { (acc, elem) => acc + elem }
+l reduceRight { (elem, acc) => acc + elem }
+```
+
+### Map
+
+```scala
+val l = List(1, 2, 3 ,4 ,5)
+l map { (x) => x + 1 }
+l map { (x) => x.toString }
+```
+
+### Flat map (bind)
+
+```scala
+val l = List(0, 1, 2, 3 ,4 ,5)
+l flatMap { (x) => if (x == 0) List(x) else List(-x, x) }
+l flatMap { (x) => if (x % 2 == 0) List(x) else List() }
+```
+
+----
+
+### Filter
+
+```scala
+val l = List(1, 2, 3, 4, 5)
+val even = l filter { (x) => x % 2 == 0 }
+val odd = l filterNot { (x) => x % 2 == 0 }
+```
+
+### Partition
+
+```scala
+val l = List(1, 2, 3, 4, 5)
+val (even, odd) = l partition { (x) => x % 2 == 0 }
+```
+
+----
+
+# Control structures
+
+## Conditional blocks
+
+```scala
+if (x > 0) 
+  z = x
+else
+  z = -x
+```        
+
+## While Loops
+
+```scala
+while (x > 0)
+  x -= 1
+
+while (x > 0) {
+  x -= 1
+  println(x)
+}
+```
+
+----
+
+## For loops
+
+```scala
+l = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+for (i <- l)
+  println(i)
+     
+for (i <- 1 to 10) 
+  println(i)
+
+for (i <- 1 until 10) 
+  println(i)
+    
+for (i <- 1 to 10; j <- 1 to 10)
+  println(i, j)
+```  
+
+Loops with filters:
+
+```scala
+for (i <- 1 until 10 if i % 2 == 0) 
+  println(i)
+
+for (i <- 1 until 10 if i % 2 == 0; if i % 3 == 0) 
+  println(i)
+```       
+
+Lazy loop execution:
+
+```scala
+val result = for (i <- 1 to 10 if i % 2 == 0) yield i
+result(3)
+```
+
+----
+
+<!--Loops are translated into method invocations, eg.:
+
+```scala
+for (x <- lx; y <- ly; z <-lz) 
+  println(x, y, z)
+```         
+
+```scala
+lx.foreach(
+ x => ly.foreach(
+   y => lz.foreach(
+     z => {
+       println(x, y, z)
+     }
+   )
+ )
+)
+```     
+
+----
+
+Everything is an expression (returns a value):
+
+```scala
+val z: Int = if (x > 0) x else -x
+
+val u: Unit = for (i <- 1 to 10) i
+```    
+
+---->
+
+## Pattern matching
+
+Matching by value:
+
+```scala
+def f(x: Any) = {
+  x match {
+    case "1" => 1
+    case "a" | "A" => 10
+    case "b" | "B" => 11
+    case _ => -1
+  }
+}
+```
+
+Matching by type:
+
+```scala
+def f(x: Any) = {
+  x match {
+    case i: Int => i
+    case s: String => {
+      val lcase = s toLowerCase
+      val ch = (lcase toCharArray) apply 0
+      ch - 96
+    }
+    case _ => -1
+  }
+}
+```
+
+----
+
+Matching collections:
+
+```scala
+def sum (l: Any, r: Int = 0) = {
+  l match {
+    case Nil => r
+    case x :: tail => sum(tail, r + x)
+  }
+}
+```
+
+```scala
+def fuzzyLength (l: Any) = {
+  l match {
+    case Nil => "empty"
+    case _ :: Nil => "one"
+    case _ :: _ :: Nil => "two"
+    case _ :: _ :: tail => "more than two"
+    case _ => "probably not a list"
+  }
+}
+```
+
+----
+
+Conditional matching:
+
+```scala
+def grade(avg: Double) : String = {
+  avg match {
+    case x if x >= 90.0 => "A"
+    case x if x >= 85.0 => "A-"
+    case x if x >= 80.0 => "B+"
+    case x if x >= 75.0 => "B"
+    case x if x >= 70.0 => "B-"
+    case x if x >= 65.0 => "C"
+    case x if x >= 55.0 => "D"
+    case x if x >= 0.00 => "E"
+    case _ => "Um... I mean... in a way, I'm impressed." 
+  }
+}
+```   
+
+----
+
+Case classes:
+
+```scala
+abstract class BTreeNode
+case class Leaf(v: Int) extends BTreeNode
+case class ConcreteNode(l: Leaf, r: Leaf, v: Int) extends BTreeNode
+
+def sum(node: BTreeNode): Int = {
+  node match {
+    case ConcreteNode(l, r, v) => v + sum(l) + sum(r)
+    case Leaf(v) => v
+  }
+}
+```
+
+----
+    
+# Packages
+
+```scala
+package pl.edu.put.Test
+
+package pl {
+  package edu {
+    package put {
+      package Test {
+        // ...
+      }
+    }
+  }
+}
+
+import scala.math._
+```
+
+----
+
+# Placeholder
+
+```scala
+val pair = (2, 3)
+val (x, _) = pair
+```    
+
+```scala
+1::2::3::Nil map (e => -e)
+1::2::3::Nil map (-_)
+```
+
+----
+
+# Concurrency
+
+
+## Java concurrency
+
+Threads:
+
+```scala
+val th = new Thread(new Runnable {
+  def run() {
+    println("new thread")
+  }
+})
+
+th start
+println("old thread")
+th join
+```
+
+
+Example, function running in separate thread:
+
+```scala
+def start[T](expression: => T) = { 
+  val th = new Thread(new Runnable{ def run() { expression } })
+  th.start; th 
+}
+
+start((0 until 100) map {e => println(e * e)})
+```
+
+----
+
+## Concurrency control
+
+Concurrent sequence:
+
+```scala
+var seq = 0
+
+class Incr extends Thread {
+  override def run () {
+    println(seq)
+    seq = seq + 1            
+  }
+}
+
+(0 until 10) map ((_) => (new Incr).start) 
+```    
+
+
+Critical section synchronization:
+
+```scala
+var seq = 0
+
+class Incr extends Thread {
+  override def run () {
+    (this getClass) synchronized {
+      println(seq)
+      seq = seq + 1      
+    }
+  }
+}
+
+(0 until 10) map ((_) => (new Incr).start)
+```
+
+----
+   
+A **volatile** variable:
+
+```scala
+@volatile var seq = 0
+```
+
+----
+
+Synchronization primitives from ``java.util.concurrent._``:
+
+```scala
+import java.util.concurrent.atomic.AtomicInteger
+val aint = new AtomicInteger(0)
+aint set 1
+aint get
+
+import java.util.concurrent.locks.ReentrantReadWriteLock
+val l = new ReentrantReadWriteLock
+
+val rl = l readLock
+val wl = l writeLock
+
+rl lock
+rl unlock 
+
+ExecutorService
+ForkJoinPool
+```
+
+----
+
+Thread pool:
+
+```scala
+import java.util.concurrent.Executors
+
+val cores = Runtime.getRuntime.availableProcessors
+val pool = Executors.newFixedThreadPool(cores)
+
+def toRunnable[T] (expression: => T) = { new Runnable{ def run() { expression } } }
+
+pool.execute{ toRunnable { Thread sleep 1000; println("Hello") } }
+pool.execute{ toRunnable { Thread sleep 10;   println("World") } } 
+
+pool.shutdown
+```
+
+Thread pool with results and Java-Scala conversion.
+
+```scala
+def toCallable[T] (expression: => T) = { 
+    new java.util.concurrent.Callable[T]{ def call() = { expression } } 
+}
+val tasks = ((0 until 100) toList) map (e => toCallable {e * e})
+
+import scala.collection.JavaConversions._
+val jTasks = asJavaCollection(tasks)
+
+val jResult = pool.invokeAll( jTasks )
+val result = (asScalaBuffer(jResult) toList) map (e => e.get)
+```
+
+----
+
+## Embarassingly Parallel Problems
+
+Parallel collections:
+
+```scala
+val list = List(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).par
+
+list foreach { e => println(e) }
+(list.par) foreach { e => println(e) }
+```
+
+----
+    
+## Futures
+
+<!--*Future* to obiekt który przechowuje jakąś wartość, która kiedyś w przyszłości
+stanie się dostępna. Funkcja może być nie zakończona (*not completed*) lub
+zakończona (*completed*), gdzie zakończenie może być pomyślne (*succesful*) lub
+błędne (*failed* -- np. zakończone wyjątkiem).-->
+
+
+```scala
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
+
+val f: Future[List[Int]] = Future { ((0 until 100) toList) map (e => e * e) }
+val f: Future[List[Int]] = Future { Thread sleep 1000; ((0 until 100) toList) map (e => e * e) }
+```
+
+Asynchronous reading from futures.
+
+```scala
+f onSuccess { case result => println("done!" + result.last) }
+f onFailure { case exception => println("fail!" + exception) }
+```
+
+Synchronous reading from futures.
+
+```scala
+f value
+
+import scala.concurrent.Await
+import scala.concurrent.duration._
+
+Await.result(f, 100 seconds) 
+Await.result(f, Duration.Inf)
+```
+
+
+Folding: ``Future.reduce``, ``Future.fold``.
+
+----
+    
+Example of using Futures for concurrency:
+
+```scala
+val l = (0 until 100) toList
+val f = (x:Int) => println(x)
+l map { e => Future { f(e) } }
+
+val f = (x:Int) => { println(x); x * x }
+l map { e => Future { f(e) } } map { e => Await.result(e, Duration.Inf) }
+```    
+
