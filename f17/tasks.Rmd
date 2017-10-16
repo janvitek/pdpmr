@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 | Assignment | Title                                                                             | Release    | Submission Date            |
 | :--------- | :-------------------------------------------                                      | :--------- | :------------------------- |
 | A0         | [Neighborhood Score](tasks-a0-neighborhood-score.html)                            | 9/8/17     | None                       |
-| A1         | [Neighborhood Score: Benchmarking](tasks-a1-neighborhood-score-benchmarking.html) | 9/15/17    | 12 Noon, 9/22/17 |
+| A1         | [Neighborhood Score: Benchmarking](tasks-a1-neighborhood-score-benchmarking.html) | 9/15/17    | 12 Noon, 9/22/17           |
 | A2         | [Neighborhood Score: MapReduce](tasks-a2-neighborhood-score-map-reduce.html)      | 9/22/17    | 12 Noon, 9/29/17 |
-| A3         | [Neighborhood Score: Reloaded](tasks-a3-neighborhood-score-reloaded.html)         |  9/2917    | 12 Noon, 10/06/17 |
+| A3         | [Neighborhood Score: Reloaded](tasks-a3-neighborhood-score-reloaded.html)         | 9/29/17    | 12 Noon, 10/06/17 |
+| A4         | [On-time performance: Starter kit](task-a4-delay.html)                            |10/06/17    | 12 Noon, 10/13/17 |
+| A5         | [On-time performance: Model and Join](task-a5-routes.html)                        |10/13/17    | 12 Noon, 10/20/17 |

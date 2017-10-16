@@ -11,7 +11,7 @@
 
 
 
-<title>A3 - Neighborhood Score: Reloaded</title>
+<title>A5 – Routing</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,14 +197,24 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">A3 - Neighborhood Score: Reloaded</h1>
+<h1 class="title toc-ignore">A5 – Routing</h1>
 
 </div>
 
 
-<p>This is an opportunity to revisit your implementation and report for A2.</p>
-<p>The only new requirements for this week are: * <em>also</em> the performance on AWS running on 2 and 4 nodes. * return the <em>median</em> rather than the mean score of each word’s k-neighborhoods.</p>
-<p>Everything else is unchanged. Include in your report a description of the changes that you had to make to your code to support returning the median.</p>
+<p>This assignment will have you do a little machine learning. Giving historical airplane on time performance data, you will offer suggestions for two-hop flights that minimize the chance of missing a connection.</p>
+<div id="fine-print" class="section level2">
+<h2>Fine print:</h2>
+<ul>
+<li>Input: A list of tuples of Year, Month, Day, Origin, Destination (e.g. 2001, 09, 11, DEN, DCA) where Year is the same for all tuples</li>
+<li>Ouput: a list of proposed flights (e.g. [(2001,09,11, 1256, 1222, UA, DEN, ORD),(2001,09,11,1910,UA, ORD, DCA)])</li>
+<li>Scoring: 1 point per flight if the flight arrives on time at the destination, -100 per proposed flight that does not arrive on time or is cancelled</li>
+<li>You can use data form previous years to build a model of flight delays, you are not allowed to use data from the Year requested in the model</li>
+<li>Do not return direct flights</li>
+<li>Connections must have at least 45 minutes between landing and takeoff, and no more than 12 hours</li>
+<li>The PDF report file should include details about the implementation as well as a study of the performance and accuracy of the solution. A detailed breakdown of what each team member worked should be added. Grading will include the quality of the report. All projects will be code walked.</li>
+</ul>
+</div>
 
 
 
