@@ -17,10 +17,10 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews,Contents,
 9,10/31,Tuesday,Spark: Relational databases,KKWZ 6,,A6,API: Linking,
 9,11/3,Friday,Guest lecture: Working at a big data startup,,A7,,,
 10,11/7,Tuesday,Spark: SparkR,"A+15, KKWZ 7",,A7,, Deployment (practical considerations)  SparkConf
-10,11/14,Friday,Spark: Scaling,KKWZ 10,A8,,Architecture,
-11,11/17,Tuesday,Spark: Streaming,,Project,A8,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
+10,11/14,Friday,Spark: Scaling,"KKWZ 10, AD15",A8,,Architecture,
+11,11/17,Tuesday,Spark: Streaming,"B+16, S+16",Project,A8,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
 11,11/21,Friday,H2O,,Project,,,
-12,11/24,Tuesday,TensorFlow,,Project,,,
+12,11/24,Tuesday,TensorFlow,A+16,Project,,,
 12,12/1,Friday,Weka,,Project,,,
 13,12/5,Tuesday,Final exam and Project Presentations,,Project,,, O+14
 13,12/8,Friday,Final exam and Project Presentations,,Project,,,"Sorting: Applications, Partial sorts, Total sorts, Secondary sorts. Joins: Map-side joins, Reduce-side joins, Theta joins"
