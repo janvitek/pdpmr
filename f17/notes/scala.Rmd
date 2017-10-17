@@ -50,7 +50,17 @@ Other:
 Style guide (please use):
 
   * [Scala Style Guide](http://docs.scala-lang.org/style/method-invocation.html)  
+
+----
   
+#### Question:
+  
+**What is Scala's Unified Object Model?** 
+
+----
+
+<center>![Class hierarchy of Scala. [[O+14]](http://scala-lang.org/docu/files/ScalaOverview.pdf)](types.png)</center>
+
 ----
   
 # Types
@@ -58,12 +68,12 @@ Style guide (please use):
 Basic types:
 
   * ``Boolean``
-  * ``Char``
-  * ``Int``, ``Long``, ``Short``, ``Byte``
+  * ``Char``, ``Int``, ``Long``, ``Short``, ``Byte``
   * ``Double``, ``Float``
   * ``String``
   * ``Symbol``
-  * ``Unit``
+  * ``Nothing``, ``Null``, ``Unit``
+  * ``Any``, ``AnyVal``, ``AnyRef``
   
 Functions:
 
@@ -74,17 +84,15 @@ Functions:
 Tupples:
 
   * `(Int, Int)`
+
+----  
+
+#### Question:
+
+**What is the reson for introducing type Unit?**
   
 ----
   
-Aliasing:
-
-```scala
-type Identifier = Int
-type Callback = Int => Int
-type Vector3D = (Int, Int, Int)
-```
-
 Unit:
 
 ```scala
@@ -98,16 +106,49 @@ val n: Null = null
 val s: String = null
 ```
 
+Aliasing:
+
+```scala
+type Identifier = Int
+type Callback = Int => Int
+type Vector3D = (Int, Int, Int)
+```
+
+Symbols:
+
+```scala
+val x = 'A
+val y = 'B
+```
+
 ----
     
 # Selected operators
 
-  * Arithmetic: ``+ - / % *``
-  * Relational and logical: ``< > <= >= || && != ! ==``
-  * Bit-wise: ``& | ^ ~ >> << >>>`` (unsigned right shift)
-  * Assignment: ``= *= += -= /=`` ...
-  
-[Full list of operators](http://jim-mcbeath.blogspot.com/2008/12/scala-operator-cheat-sheet.html)
+Arithmetic: 
+```scala 
++ - 
+/ % *
+```
+
+Relational and logical: 
+```scala
+< > <= >= == !=
+|| && !
+```
+
+Bit-wise: 
+```scala
+& | ^ ~ 
+>> << >>>
+```
+
+Assignment:
+```scala 
+= *= += -= /=
+```
+
+And more: [full list of operators](http://jim-mcbeath.blogspot.com/2008/12/scala-operator-cheat-sheet.html)
 
 ----
 
@@ -163,7 +204,7 @@ var z: Any = _
 def f = 1
 def g = 1 + f
 def h = (x: Int) => 1 + x
-def h: Int => Int = (x) => 1 + x
+def h: Int => Int = x => 1 + x
 ```
 
 Evaluated on use (Every time). Can redefine.
@@ -171,7 +212,7 @@ Evaluated on use (Every time). Can redefine.
 Limits of type inference:
 
 ```scala
-def h = (x) => 1 + x
+def h = x => 1 + x
 ```
 
 ```
@@ -179,7 +220,11 @@ def h = (x) => 1 + x
        def h = (x) => 1 + x
 ```
 
-**When to use `val` , `var`, `def`? Why?**
+----
+
+#### Question:
+
+**When and why to use `val` , `var`, `def`?**
 
 ----
 
@@ -202,7 +247,7 @@ x.+(y)
 
 ----
 
-## Simplifying emthod calls
+## Simplifying method calls
 
 Removing parentheses from method calls:
 
@@ -282,6 +327,15 @@ def increment(x: Int) {x + 1}       // → unit
 def increment(x: Int) = x + 1
 ```
 
+Method nesting:
+
+```scala
+def outer(x: Int) = {
+  def inner(y: Int) = y + x
+  inner(x)
+}
+```
+
 ----
 
 Unit argument:
@@ -317,14 +371,15 @@ error("a bad thing is happening")
 
 ----
 
-Method nesting:
+### Call-by-name and call-by-value arguments
 
 ```scala
-def outer(x: Int) = {
-  def inner(y: Int) = y + x
-  inner(x)
-}
+var debugLevel = 5
+def debug(level: Int)(message: => String) { if (level >= debugLevel) println(message) }
+
+warn("a" + " meh " + "thing is happening")
 ```
+
 
 ----
 
@@ -434,6 +489,14 @@ scala.MatchError: spaceship (of class java.lang.String)
   at $anonfun$1.apply(<console>:7)
   ... 33 elided
 ```
+
+----
+
+#### Question:
+
+**What are first-order functions?**  
+**What are higher-order functions?**
+
 
 ----
 
@@ -700,6 +763,12 @@ class Enterprise(ver: String, capt: String, maxShld: Int) extends AuxiliaryCraft
 
 ----
 
+#### Question:
+
+**What restrictions are placed on method  identifiers in Scala?**
+
+----
+
 ## Operator overloading
 
 ```scala
@@ -727,8 +796,6 @@ object universe {
 
 Scala does not allow creating static elements outside of static objects.  
 
-Static objects are created on first use.  
-
 Companion object (*pattern*):
 
 ```scala
@@ -741,6 +808,12 @@ object Shipyard {
   def getAllShipyards = ???
 }
 ```
+
+----
+
+#### Question:
+
+**When are static objects created?**
 
 ----
 
@@ -1025,16 +1098,16 @@ l reduceRight { (elem, acc) => acc + elem }
 
 ```scala
 val l = List(1, 2, 3 ,4 ,5)
-l map { (x) => x + 1 }
-l map { (x) => x.toString }
+l map { x => x + 1 }
+l map { x => x.toString }
 ```
 
 ### Flat map (bind)
 
 ```scala
 val l = List(0, 1, 2, 3 ,4 ,5)
-l flatMap { (x) => if (x == 0) List(x) else List(-x, x) }
-l flatMap { (x) => if (x % 2 == 0) List(x) else List() }
+l flatMap { x => if (x == 0) List(x) else List(-x, x) }
+l flatMap { x => if (x % 2 == 0) List(x) else List() }
 ```
 
 ----
@@ -1043,15 +1116,24 @@ l flatMap { (x) => if (x % 2 == 0) List(x) else List() }
 
 ```scala
 val l = List(1, 2, 3, 4, 5)
-val even = l filter { (x) => x % 2 == 0 }
-val odd = l filterNot { (x) => x % 2 == 0 }
+val even = l filter { x => (x % 2) == 0 }
+val odd = l filterNot { x => x % 2 == 0 }
 ```
 
 ### Partition
 
 ```scala
 val l = List(1, 2, 3, 4, 5)
-val (even, odd) = l partition { (x) => x % 2 == 0 }
+val (even, odd) = l partition { x => x % 2 == 0 }
+```
+
+### Group
+
+```scala
+val l = List(1, 2, 3, 4, 5, 1, 2)
+l groupBy { x => x % 2 }
+l groupBy { x => x }
+("to boldly go where no man has gone before" split " ") groupBy { x => x.charAt(0) }
 ```
 
 ----
@@ -1081,7 +1163,9 @@ while (x > 0) {
 
 ----
 
-## For loops
+## For comprehensions
+
+For loops:
 
 ```scala
 l = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -1237,6 +1321,17 @@ def sum(node: BTreeNode): Int = {
   node match {
     case ConcreteNode(l, r, v) => v + sum(l) + sum(r)
     case Leaf(v) => v
+  }
+}
+```
+
+Option types:
+
+```scala
+def f(x: Option[String]) = {
+  x match {
+    case None => throw new Exception()
+    case Some(s) => s.split(" ")
   }
 }
 ```
