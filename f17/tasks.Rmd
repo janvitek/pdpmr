@@ -15,3 +15,4 @@ knitr::opts_chunk$set(echo = TRUE)
 | A3         | [Neighborhood Score: Reloaded](tasks-a3-neighborhood-score-reloaded.html)         | 9/29/17    | 12 Noon, 10/06/17 |
 | A4         | [On-time performance: Starter kit](task-a4-delay.html)                            |10/06/17    | 12 Noon, 10/13/17 |
 | A5         | [On-time performance: Model and Join](task-a5-routes.html)                        |10/13/17    | 12 Noon, 10/20/17 |
+| A6         | [Spark: High Fidelity](task-a6-high-fidelity.html)                                |10/20/17    | 12 Noon, 10/27/17 |

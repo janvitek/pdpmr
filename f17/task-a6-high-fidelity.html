@@ -11,7 +11,7 @@
 
 
 
-<title>Tasks</title>
+<title>A6 - High Fidelity</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -200,65 +200,75 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Tasks</h1>
+<h1 class="title toc-ignore">A6 - High Fidelity</h1>
 
 </div>
 
 
-<table>
-<thead>
-<tr class="header">
-<th align="left">Assignment</th>
-<th align="left">Title</th>
-<th align="left">Release</th>
-<th align="left">Submission Date</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">A0</td>
-<td align="left"><a href="tasks-a0-neighborhood-score.html">Neighborhood Score</a></td>
-<td align="left">9/8/17</td>
-<td align="left">None</td>
-</tr>
-<tr class="even">
-<td align="left">A1</td>
-<td align="left"><a href="tasks-a1-neighborhood-score-benchmarking.html">Neighborhood Score: Benchmarking</a></td>
-<td align="left">9/15/17</td>
-<td align="left">12 Noon, 9/22/17</td>
-</tr>
-<tr class="odd">
-<td align="left">A2</td>
-<td align="left"><a href="tasks-a2-neighborhood-score-map-reduce.html">Neighborhood Score: MapReduce</a></td>
-<td align="left">9/22/17</td>
-<td align="left">12 Noon, 9/29/17</td>
-</tr>
-<tr class="even">
-<td align="left">A3</td>
-<td align="left"><a href="tasks-a3-neighborhood-score-reloaded.html">Neighborhood Score: Reloaded</a></td>
-<td align="left">9/29/17</td>
-<td align="left">12 Noon, 10/06/17</td>
-</tr>
-<tr class="odd">
-<td align="left">A4</td>
-<td align="left"><a href="task-a4-delay.html">On-time performance: Starter kit</a></td>
-<td align="left">10/06/17</td>
-<td align="left">12 Noon, 10/13/17</td>
-</tr>
-<tr class="even">
-<td align="left">A5</td>
-<td align="left"><a href="task-a5-routes.html">On-time performance: Model and Join</a></td>
-<td align="left">10/13/17</td>
-<td align="left">12 Noon, 10/20/17</td>
-</tr>
-<tr class="odd">
-<td align="left">A6</td>
-<td align="left"><a href="task-a6-high-fidelity.html">Spark: High Fidelity</a></td>
-<td align="left">10/20/17</td>
-<td align="left">12 Noon, 10/27/17</td>
-</tr>
-</tbody>
-</table>
+<p><em>“Is it wrong, wanting to be at home with your record collection? It’s not like collecting records is like collecting stamps, or beermats, or antique thimbles. There’s a whole world in here (…)”</em></p>
+<!--, a nicer, dirtier, more violent, more peaceful, more colorful, sleazier, more dangerous, more loving world than the world I live in; there is history, and geography, and poetry, and countless other things I should have studied at school, including music.”*-->
+<!--*“What came first – the music or the misery? Did I listen to the music because I was miserable? Or was I miserable because I listened to the music? Do all those records turn you into a melancholy person?”*-->
+<div style="text-align: right">
+<p>― Nick Hornby, High Fidelity</p>
+</div>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
+<p>Learning the dataset and the basics of Spark</p>
+</div>
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<p>We are using a dataset based on the metadata in the <a href="https://labrosa.ee.columbia.edu/millionsong/">Million Song Dataset</a>. The data can be found here:</p>
+<ul>
+<li>Million Songs Subset Metadata (<a href="http://violet.ele.fit.cvut.cz/~kondziu/pdpmr/MillionSongSubset.tar.gz">CSV</a>)</li>
+<li>Million Songs Full Dataset Metadata (TBA)</li>
+</ul>
+<p>Use the subset for development and testing. Use the full dataset for your final submission.</p>
+<p>Description of the dataset can be found <a href="https://labrosa.ee.columbia.edu/millionsong/pages/example-track-description">here</a>. Watch out for dirty data!</p>
+</div>
+<div id="functional-requirements" class="section level2">
+<h2>Functional requirements</h2>
+<p>Write a Spark program that retrieves:</p>
+<ul>
+<li>number of distinct songs, artists, and albums</li>
+<li>top 5 loudest songs</li>
+<li>top 5 longest songs</li>
+<li>top 5 fastest songs</li>
+<li>top 5 most familiar artists</li>
+<li>top 5 hottest songs</li>
+<li>top 5 hottest artists</li>
+<li>top 5 hottest genres (mean artists hottness in <code>artist_term</code>)</li>
+<li>top 5 most popular keys (must have confidence &gt; 0.7)</li>
+<li>top 5 most prolific artists (include ex-equo items, if any)</li>
+<li>top 5 most common words in song titles (exclusing articles, prepositions, conjunctions)</li>
+</ul>
+<p>Evaluate your solution using your a local machine. <strong>Optionally</strong> evaluate your solution using AWS.</p>
+<p>Write a report discussing the results and the performance results. Pay attention to how the data and operations impact performance.</p>
+</div>
+<div id="non-functional-requirements" class="section level2">
+<h2>Non-functional requirements</h2>
+<p>Assignment is performed in groups of 2 (assigned by TA). Authors are clearly marked on all deliverables.</p>
+<p>Required files:</p>
+<ul>
+<li><code>src/</code> (directory containing the sources of the implentation)</li>
+<li><code>README.md</code> (Markdown file containing the description of the implementations)</li>
+<li><code>Makefile</code></li>
+<li><code>report.Rmd</code> (The report as described in the previous section)</li>
+<li><code>report.pdf</code> (A PDF rendering of <code>report.Rmd</code>)</li>
+<li><code>input/</code> (A directory containing sample input files; please <code>gzip</code> all text files to save space)</li>
+</ul>
+<p>Provide a Makefile with the following rules:</p>
+<ul>
+<li><code>build</code> builds all the implementations</li>
+<li><code>run</code> runs the variants</li>
+<li><code>report</code> generates the reports</li>
+<li><code>all</code> build, run, and report</li>
+</ul>
+<p>Prepare the report in R Markdown and generate a PDF.</p>
+</div>
+<div id="extra-credit" class="section level2">
+<h2>Extra credit</h2>
+<p>It is possible to get extra credit for the assignment by providing a complete Hadoop implementation of this assignment and comparing the performance of the two solutions.</p>
+</div>
 
 
 
