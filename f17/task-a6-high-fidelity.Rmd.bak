@@ -43,7 +43,7 @@ Write a Spark program that retrieves:
 - top 5 most familiar artists
 - top 5 hottest songs
 - top 5 hottest artists
-- top 5 hottest genres (mean artists hotness in `artist_term`)
+- top 5 hottest genres (mean artists hottness in `artist_term`)
 - top 5 most popular keys (must have confidence > 0.7)
 - top 5 most prolific artists (include ex-equo items, if any)
 - top 5 most common words in song titles (excluding articles, prepositions, conjunctions)
