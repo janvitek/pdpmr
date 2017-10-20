@@ -64,7 +64,7 @@ Required files:
 - `README.md` (Markdown file containing the description of the implementations)
 - `Makefile`
 - `report.Rmd` (The report as described in the previous section)
-- `report.html` (An HTML rendering of `report.Rmd`)
+- `report.pdf` (A PDF rendering of `report.Rmd`)
 - `input/` (A directory containing sample input files; please `gzip` all text files to save space)
 
 Provide a Makefile with the following rules:
@@ -74,7 +74,7 @@ Provide a Makefile with the following rules:
 - ``report`` generates the reports
 - ``all`` build, run, and report
 
-Prepare the report in R Markdown and generate an HTML.
+Prepare the report in R Markdown and generate a PDF.
 
 ## Extra credit
 
