@@ -10,3 +10,4 @@ knitr::opts_chunk$set(echo = TRUE)
 | Title                                                                             | Lecture date   |
 | :-------------------------------------------------------------------------------- | :------------- |
 | [Scala: an Introduction](notes/scala.html)                                        | 10/17/17       |
+| [Spark: notes from tutorial](notes/spark-tutorial.html)                                       | 10/20/17       |

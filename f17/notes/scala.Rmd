@@ -1,8 +1,7 @@
 ---
 title: "Scala: an Introduction"
 output: 
-  #slidy_presentation:
-  html_document: default
+  html_document
 ---
 
 ```{r setup, include=FALSE}

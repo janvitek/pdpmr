@@ -1,0 +1,94 @@
+---
+title: "Spark: notes from tutorial"
+output: 
+  html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```scala
+import org.apache.spark.{SparkConf, SparkContext}
+val conf = new SparkConf().setAppName("").setMaster("local")
+implicit val sc = new SparkContext(conf)
+
+val alice = sc.textFile("input/books/11.txt.utf-8")
+
+val words = alice.flatMap { line => line.filter(c => c.isLetter || c.isWhitespace).toUpperCase.split(' ') }.filter { !_.isEmpty }
+
+val wordCount = words.countByValue
+
+val top5words1 = wordCount.toSeq.sortWith {case ((_, i), (_, j)) => i > j}.take(5)
+val top5words2 = wordCount.toSeq.sortWith(_._2 > _._2).take(5)
+val top5words3 = sc.parallelize(wordCount.toSeq).sortBy(_._2, false).take(5)
+
+val wordCount2 = words.filter { _.length > 4 }.countByValue
+
+val ignored = Set(
+  "THAT", "WITH", "THE", "AND", "TO", "OF", 
+  "A", "IT", "SHE", "HE", "YOU", "IN", "I", 
+  "HER", "AT", "AS", "ON", "THIS", "FOR", 
+  "BUT", "NOT", "OR")
+  
+val wordCount3 = words.filter { !ignored.contains(_) }.countByValue
+
+val top5words4 = sc.parallelize(wordCount3.toSeq).sortBy(_._2, false).take(5)
+```
+
+```scala
+val allWords = sc.textFile("input/books/*.txt.utf-8")
+  .flatMap { line => line.filter(c => c.isLetter || c.isWhitespace).toUpperCase.split(' ') }
+  .filter { !_.isEmpty }
+  .filter { !ignored.contains(_) }
+
+val all =
+  sc.parallelize(
+    allWords
+    .countByValue
+    .toSeq
+  )
+  .sortBy(_._2, false).take(5) //.sortWith { _._2 > _._2 }
+  .take(5)
+```
+
+```scala
+val score = sc.textFile("input/scrabble/english.csv")
+  .mapPartitionsWithIndex {
+    case (0, iter) => iter.drop(1)
+    case (_, iter) => iter
+  }
+  .map { _.split(',') }
+
+val score = sc.textFile("input/scrabble/english.csv")
+  .mapPartitionsWithIndex {
+    case (0, iter) => iter.drop(1)
+    case (_, iter) => iter
+  }
+  .map {_.split(',').toList}
+  .map { case List(k, v) => (k.charAt(0), v.toInt) }
+  .collect
+  .toMap
+
+words.map {word => word.map(c => score.getOrElse(c,0)).reduce(_ + _) }
+words.map {word => (word, word.map(c => score.getOrElse(c,0)).reduce(_ + _)) }
+```
+
+```scala
+val words = sc.textFile("input/books/11.txt.utf-8").flatMap { line => line.filter(c => c.isLetter || c.isWhitespace).toUpperCase.split(' ') }.filter { !_.isEmpty }
+val score = sc.textFile("input/scrabble/english.csv")
+  .mapPartitionsWithIndex {
+    case (0, iter) => iter.drop(1)
+    case (_, iter) => iter
+  }
+  .map {_.split(',').toList}
+  .map { case List(k, v) => (k.charAt(0), v.toInt) }
+  .collect
+  .toMap
+val wordCount = sc.parallelize(words.countByValue.toSeq)
+val wordScore = words.distinct.map {word => (word, word.map(c => score.getOrElse(c,0)).reduce(_ + _)) }
+val wordWorth = wordCount.join(wordScore).map {case (word, (count, score)) => (word, count * score)}
+val mean = wordWorth.map(_._2).mean
+val valuableWords = wordWorth.filter {case (word, score) => score > mean}.map{_._1}
+words.intersection(valuableWords)
+```

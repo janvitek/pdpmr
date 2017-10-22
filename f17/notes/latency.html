@@ -131,6 +131,21 @@ Send packet CA-&gt;Netherlands-&gt;CA .... 150,000,000 ns  = 150 ms</pre>
 
 <p>Lets multiply all these durations by a billion!</p>
 
+<pre >L1 cache reference ......................... 0.5 s
+Branch mispredict ............................ 5 s
+L2 cache reference ........................... 7 s
+Mutex lock/unlock .......................... 0.5 min
+Main memory reference ...................... 1.5 min             
+Compress 1K bytes with Zippy ................ 50 min
+Send 2K bytes over 1 Gbps network .......... 5.5 hr
+SSD random read ............................ 1.7 days
+Read 1 MB sequentially from memory ......... 2.9 days
+Round trip within same datacenter .......... 5.8 days
+Read 1 MB sequentially from SSD* .......... 11.6 days
+Disk seek ................................. 16.5 weeks
+Read 1 MB sequentially from disk ........... 7.8 months
+Send packet CA-&gt;Netherlands-&gt;CA ............ 4.8 years</pre>
+
 <p>(source: <a href='https://gist.github.com/hellerbarde/2843375' title=''>P. Stark</a>)</p>
 
 </article></slide><slide class=''><hgroup><h2>Minute</h2></hgroup><article  id="minute">
