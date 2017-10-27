@@ -1,0 +1,57 @@
+---
+title: "Apache Spark"
+output: 
+  ioslides_presentation
+  #html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+* Framework for distributed computation
+* Based on the concept of RDDs
+* May use Hadoop as a back-end
+* Faster than Hadoop due to in-memory storage
+  
+# RDDs
+
+*Resilient Data Structures* (RDDs)
+
+Pipeline programming
+
+Lazy and immutable:
+
+* Original structure unchanged, changes logged
+* Cache-able
+
+## Creating RDDs
+
+parallelize,
+read from file
+
+## Transformations
+
+```scala
+map
+flatMap
+filter
+distinct
+```
+
+## Actions
+
+## Architecture
+
+Distributing RDDs
+Serializing
+
+## Caching
+
+# Iterativity
+
+# Latency
+
+## RDD cacheing

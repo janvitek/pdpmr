@@ -1,5 +1,6 @@
 ---
-title: "Latency"
+title: "Spark"
+subtitle: "latency, persistence, and partitioning"
 output: 
   ioslides_presentation
   #html_document: default
@@ -217,5 +218,152 @@ Send packet CA->Netherlands->CA ............ 4.8 years
 ## How to limit latency?
 
 size of data  
-caching  
+persistence    
 partitioning  
+
+## Persistence
+
+| Storage Level	                        | Store as |
+| --------------------------------------|---------------------------
+| **MEMORY_ONLY**                       | Deserialized in JVM, recompute on spill. |
+| MEMORY_AND_DISK	                      | Deserialized in JVM, spill to disk. |
+| MEMORY_ONLY_SER                       | Serialized in JVM. |
+| MEMORY_AND_DISK_SER                   | Like MEMORY_ONLY_SER, spill to disk. |
+| DISK_ONLY	                            | Serialized to disk. |
+| MEMORY_ONLY_2, ...                    | Same as above, replicate partitions on 2 nodes each. |
+| OFF_HEAP (experimental)	              | Deserialized off-heap. |
+
+## Example
+
+```scala
+
+val words = sc
+  .textFile("input/books/11.txt.utf-8")
+  .flatMap { 
+    _ .filter(c => c.isLetter || c.isWhitespace)
+      .toUpperCase.split(' ') 
+  }
+  .filter { !_.isEmpty }
+
+  
+val wordCount = words.countByValue.toSeq
+val wordScore = words
+  .distinct
+  .map {
+    word =>
+      word -> word.map {scores.getOrElse(_, 0)}.reduce {_ + _}
+  }
+  .collect
+```
+
+## Example
+
+```scala
+
+val words = sc
+  .textFile("input/books/11.txt.utf-8")
+  .flatMap { 
+    _ .filter(c => c.isLetter || c.isWhitespace)
+      .toUpperCase.split(' ') 
+  }
+  .filter { !_.isEmpty }
+  .cache
+  
+val wordCount = words.countByValue.toSeq
+val wordScore = words
+  .distinct
+  .map {
+    word =>
+      word -> word.map {scores.getOrElse(_, 0)}.reduce {_ + _}
+  }
+  .collect
+```
+
+## Example
+
+```scala
+val words = sc
+  .textFile("input/books/11.txt.utf-8")
+  .flatMap { 
+    _ .filter(c => c.isLetter || c.isWhitespace)
+      .toUpperCase.split(' ') 
+  }
+  .filter { !_.isEmpty }
+  .persist(StorageLevel.DISK_ONLY)
+
+val wordCount = words.countByValue.toSeq
+val wordScore = words
+  .distinct
+  .map {
+    word =>
+      word -> word.map {scores.getOrElse(_, 0)}.reduce {_ + _}
+  }
+  .collect
+```
+
+## Unpersisting
+
+`unpersist`  
+LRU  
+
+## Partitioning
+
+HashPartitioner  
+RangePartitioner  
+custom  
+
+## Partitioning 
+
+```scala
+val list = sc.parallelize(
+  List(8 -> "Kirk", 96 -> "Picard", 240 -> "Sisko", 400 -> "Janeway", 
+      401 -> "Archer", 800 -> "Lorca"))
+```
+
+4 partitions  
+hash: ``_._1``
+
+## Partitioning
+
+```scala
+val list = sc.parallelize(
+  List(8 -> "Kirk", 96 -> "Picard", 240 -> "Sisko", 400 -> "Janeway", 
+      401 -> "Archer", 800 -> "Lorca"))
+```
+
+4 partitions  
+hash: ``_._1``
+
+```
+parition 0: [ 8, 96, 240, 400, 800 ]
+parition 1: [ 401 ]
+parition 2: [ ]
+parition 3: [ ]
+```
+
+## Partitioning
+
+```scala
+val list = sc.parallelize(
+  List(8 -> "Kirk", 96 -> "Picard", 240 -> "Sisko", 400 -> "Janeway", 
+      401 -> "Archer", 800 -> "Lorca"))
+val part = new RangePartitioner(4, list)
+val pList = list.partitionBy(part)
+```
+
+## Partitioning
+
+```scala
+val list = sc.parallelize(
+  List(8 -> "Kirk", 96 -> "Picard", 240 -> "Sisko", 400 -> "Janeway", 
+      401 -> "Archer", 800 -> "Lorca"))
+val part = new RangePartitioner(4, list)
+val pList = list.partitionBy(part)
+```
+
+```
+parition 0: [ 8, 96, ]
+parition 1: [ 240, 400 ]
+parition 2: [ 401 ]
+parition 3: [ 800 ]
+```

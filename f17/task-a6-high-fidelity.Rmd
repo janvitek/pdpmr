@@ -26,7 +26,7 @@ Learning the dataset and the basics of Spark
 We are using a dataset based on the metadata in the [Million Song Dataset](https://labrosa.ee.columbia.edu/millionsong/). The data can be found here:
 
 - Million Songs Subset Metadata ([CSV](http://violet.ele.fit.cvut.cz/~kondziu/pdpmr/MillionSongSubset.tar.gz))
-- Million Songs Full Dataset Metadata (TBA)
+- Million Songs Full Dataset Metadata ([CSV](http://violet.ele.fit.cvut.cz/~kondziu/pdpmr/MillionSongDataset.tar.gz))
 
 Use the subset for development and testing. Use the full dataset for your final submission.
 

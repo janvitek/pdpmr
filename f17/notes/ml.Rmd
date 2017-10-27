@@ -1,0 +1,385 @@
+---
+title: "Clustering"
+output: 
+  ioslides_presentation
+  #html_document: default
+---
+
+```{r setup, include=FALSE}
+library(datasets)
+library(ggplot2)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Cluster analysis
+
+Grouping objects so that objects in the same group are more similar to each other than to objects of other groups.
+
+``` {r cars}
+ggplot(cars, aes(x=speed, y=dist)) + geom_point(color="black")
+```
+
+## Cluster analysis
+
+Grouping objects so that objects in the same group are more similar to each other than to objects of other groups.
+
+``` {r cars-clustering}
+clusters <- kmeans(cars$speed * cars$dist, 3, iter.max = 50)
+clustered <- data.frame(
+  speed=cars$speed, 
+  dist=cars$dist, 
+  color=ifelse(clusters$cluster==1, "red", ifelse(clusters$cluster==2, "blue", "green")))
+                   
+ggplot(clustered, aes(x=speed, y=dist)) + geom_point(aes(color=color)) + theme(legend.position="none")
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+``` {r ahc1, fig.width=8, fig.height=1}
+
+gg_circle <- function(r, xc, yc, color="black", fill=NA, ...) {
+    x <- xc + r*cos(seq(0, pi, length.out=100))
+    ymax <- yc + r*sin(seq(0, pi, length.out=100))
+    ymin <- yc + r*sin(seq(0, -pi, length.out=100))
+    annotate("ribbon", x=x, ymin=ymin, ymax=ymax, color=color, fill=fill, ...)
+}
+
+gg_rect <- function(r, x, color) {
+  annotate("rect", xmin=x-r-0.05, xmax=x+r+0.05, ymin=0.2, ymax=1.8, alpha=.2, fill=color)
+}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(0,0,0,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=c(1:11)) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") 
+  
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+``` {r ahc2, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(1,1,0,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") + 
+  gg_rect(r=.5, x=2.5, color="skyblue")
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+``` {r ahc3, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(1,1,0,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") + 
+  gg_rect(r=.5, x=2.5, color="skyblue")
+```
+
+Linkage:
+
+```
+single([2,3], [4]) = 1
+complete([2,3], [4]) = 2
+centroid([2,3], [4]) = 1.5
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+
+``` {r ahc4, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(1,1,1,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") + 
+  gg_rect(r=1, x=3, color="skyblue")
+```
+
+Linkage:
+
+```
+single([2,3], [4]) = 1
+complete([2,3], [4]) = 2
+centroid([2,3], [4]) = 1.5
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+``` {r ahc5, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(1,1,1,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") + 
+  gg_rect(r=1, x=3, color="skyblue")
+```
+
+Linkage:
+
+```
+single([2,3,4], [8]) = 4, single([8], [11]) = 3
+complete([2,3,4], [8]) = 6, complete([8], [11]) = 3
+centroid([2,3,4], [8]) = 5, centroid([8], [11]) = 3
+```
+
+## Agglomerative Hierarchical Clustering
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 3
+
+``` {r ahc6, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(1,1,1,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") + 
+  gg_rect(r=1, x=3, color="skyblue") +
+  gg_rect(r=1.5, x=9.5, color="black")
+```
+
+Linkage:
+
+```
+single([2,3,4], [8]) = 4, single([8], [11]) = 3
+complete([2,3,4], [8]) = 6, complete([8], [11]) = 3
+centroid([2,3,4], [8]) = 5, centroid([8], [11]) = 3
+```
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k1, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11), y=c(1,1,1,1,1), color=c(0,0,0,0,0))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none")
+```
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k2, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 2, 4), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none")
+```
+
+Initial centroids: A=2, B=4
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k3, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 2, 4), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") +
+  gg_rect(r=.5, x=2.5, color="skyblue") +
+  gg_rect(r=3.5, x=7.5, color="black")
+```
+
+Initial centroids: A=2, B=4
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k4, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 2.5, 7.5), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") +
+  gg_rect(r=.5, x=2.5, color="skyblue") +
+  gg_rect(r=3.5, x=7.5, color="black")
+```
+
+New centroids: A=2.5, B=7.5
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k5, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 2.5, 7.5), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") +
+  gg_rect(r=1, x=3, color="skyblue") +
+  gg_rect(r=1.5, x=9.5, color="black")
+```
+
+New centroids: A=2.5, B=7.5
+
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k6, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 3, 9.5), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") +
+  gg_rect(r=1, x=3, color="skyblue") +
+  gg_rect(r=1.5, x=9.5, color="black")
+```
+
+## K-means
+
+Clusters: 2  
+Input: 2, 8, 4, 11, 2
+
+``` {r k7, fig.width=8, fig.height=1}
+
+original <- data.frame(x=c(2, 3, 4, 8, 11, 3, 9.5), y=c(1,1,1,1,1,1.25,1.25), color=c(0,0,0,0,0,1,2))
+
+ggplot(original, aes(x,y,colour=color)) + geom_point() + 
+  ylim(0, 2) +
+  scale_x_discrete(limits=1:11) +
+  theme(axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        panel.background = element_blank(),
+        legend.position="none") +
+  gg_rect(r=1, x=3, color="skyblue") +
+  gg_rect(r=1.5, x=9.5, color="black")
+```
+
+Centroids/membership is stable
+
+## Clustering in two dimensions
+
+**Euclidian distance**  
+
+$d_\epsilon(X,Y) = \sqrt{\big|X_0 - Y_0\big|^2 + \big|X_1 - Y_1\big|^2 + ... + \big|X_n - Y_n\big|^2}$
+
+
+**p-norm**
+
+$d_p(X, Y) = \bigg(\big|X_0 - Y_0\big|^2 + \big|X_1 - Y_1\big|^2 + ... + \big|X_n - Y_n\big|^2\bigg)^{1/p}$
+
+- Manhattan ($p=1$)
+- Euclidian ($p=2$)
+-Chebyshev ($p=∞$)
+
+
+Other: **Levenstein-Damerau** (strings), graph distances
+    
