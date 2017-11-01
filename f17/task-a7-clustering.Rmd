@@ -1,5 +1,5 @@
 ---
-title: "A6 - Clustering"
+title: "A7 - Clustering"
 output: html_document
 ---
 
@@ -63,7 +63,7 @@ Let's define **commonality** between two artists as the number of terms shared b
 
 Let's define a **commonality graph** as an undirected graph. The nodes are artists. There is an edge between artists if they are similar. The weight on the edge is the commonality between the artists.
 
-Cluster all artists using k-means in Spark, using the trendsetters as initial centroids and the distance in the similarity graph as distance measure.
+Cluster all artists using k-means in Spark, using the trendsetters as initial centroids and some definition of distance in the commonality graph as distance measure. 
 
 Discuss the results of the clustering and performance.
 
