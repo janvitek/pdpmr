@@ -14,11 +14,11 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews,Contents,
 7,10/20,Friday,Spark: Basics,"HTDG 19, Z+12",A5,,RDDs,
 8,10/24,Tuesday,Spark: Basics,KKWZ 1-6,,A5,," Applications  Consistency and fault tolerance. ""Broadcast variables: Applications  Consistency"""
 8,10/27,Friday,Spark: Accumulators and broadcast variables,"KKWZ 9, OS6",A6,,"Accumulators:, Loading/saving data, Performance",
-9,10/31,Tuesday,Spark: Relational databases,KKWZ 6,,A6,API: Linking,
-9,11/3,Friday,Guest lecture: Working at a big data startup,,A7,,,
-10,11/7,Tuesday,Spark: SparkR,"A+15, KKWZ 7",,A7,, Deployment (practical considerations)  SparkConf
-10,11/14,Friday,Spark: Scaling,"KKWZ 10, AD15",A8,,Architecture,
-11,11/17,Tuesday,Spark: Streaming,"B+16, S+16",Project,A8,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
+9,10/31,Tuesday,Guest lecture: Working at a big data startup,,,A6,,
+9,13/3,Friday,Spark: Relational databases,KKWZ 6,,,API: Linking,
+10,11/7,Tuesday,Spark: SparkR,"A+15, KKWZ 7",,,, Deployment (practical considerations)  SparkConf
+10,11/14,Friday,Spark: Scaling,"KKWZ 10, AD15",A7,,Architecture,
+11,11/17,Tuesday,Spark: Streaming,"B+16, S+16",Project,A7,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
 11,11/21,Friday,H2O,,Project,,,
 12,11/24,Tuesday,TensorFlow,A+16,Project,,,
 12,12/1,Friday,Weka,,Project,,,
