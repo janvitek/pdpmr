@@ -16,7 +16,7 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews,Contents,
 8,10/27,Friday,Spark: Accumulators and broadcast variables,"KKWZ 9, OS6",A6,,"Accumulators:, Loading/saving data, Performance",
 9,10/31,Tuesday,Guest lecture: Working at a big data startup,,,A6,,
 9,13/3,Friday,Spark: Relational databases,KKWZ 6,A7,,API: Linking,
-10,11/7,Tuesday,Spark: SparkR,"A+15, KKWZ 7",,A7,, Deployment (practical considerations)  SparkConf
+10,11/7,Tuesday,Spark: SparkR,"A+15, KKWZ 7, M+16",,A7,, Deployment (practical considerations)  SparkConf
 10,11/10,Friday,[ Veterans' Day ],,,,, 
 11,11/14,Tuesday,Spark: Scaling,"KKWZ 10, AD15",,,Architecture,
 11,11/17,Friday,Spark: Streaming,"B+16, S+16",Project,,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
