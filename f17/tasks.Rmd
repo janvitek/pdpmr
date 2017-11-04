@@ -17,3 +17,4 @@ knitr::opts_chunk$set(echo = TRUE)
 | A5         | [On-time performance: Model and Join](task-a5-routes.html)                        |10/13/17    | 12 Noon, 10/20/17 |
 | A6         | [Spark: High Fidelity](task-a6-high-fidelity.html)                                |10/20/17    | 12 Noon, 10/27/17 |
 | A7         | [Spark: Clustering](task-a7-clustering.html)                                      |10/27/17    | 12 Noon, 11/03/17 |
+| A8         | [Ghost Protocol](task-a8-ghost.html)                                              |11/04/17    | 12 Noon, 11/10/17 |

@@ -1,0 +1,28 @@
+---
+title: "A8 - Ghost of Assignments Past"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Objective
+
+Get more points.
+
+## Fine print Dataset
+
+Select a past assignment and re-submit it.  The grade you get will replace the existing for that assignment. This gives you the opportunity and extra time to polish existing work, explore further a solution you were working on, and/or fix a grade you did not like with the benefit of having received peer reviews and notes on your work.
+
+When re-grading we will concentrate on the report. Please make sure it is done well both in terms of **contents** and **presentation**. There is a page limit on the report, the number of pages is **4**. 
+
+Assignments that can be re-submitted: **A4**, **A5**, **A6**, **A7**.
+
+This assignment is done individually, and not in pairs or groups. Use the repository for A8 to re-submit your project.
+
+## Requirements
+
+We exepect to see a file named report.pdf with your report. Also we ask for a file diff.pdf that contains a list of changes you made.  Lastly, we would like to see a file named old.pdf that contains the previous report.   Your submission should contain all necessary files and be runnable as usual.
+
