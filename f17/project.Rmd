@@ -1,5 +1,5 @@
 ---
-title: "A Crystal Discoball"
+title: "Crystal Discoball"
 output: html_document
 ---
 
