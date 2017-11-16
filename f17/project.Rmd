@@ -17,7 +17,7 @@ We provide a dataset reflecting prices that should serve as a starting point and
 
 ### Price and download information
 
-We provide aggregated information about song downloads from various sources at [downloads.csv.tar.gz](files/downloads.csv.tar.gz).
+We provide aggregated information about song downloads from various sources at [downloads.csv.gz](files/downloads.csv.gz).
 
 Description:
 
