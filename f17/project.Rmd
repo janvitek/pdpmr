@@ -1,0 +1,88 @@
+---
+title: "A Crystal Discoball"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Using the given datasets (and any additional datasets of your choosing) create a model capable of predicting song download numbers (e.g. random forests). Use any technology and algorithm that you like for the task of creating a model.
+
+Explain your design and the process of creating a model in the report. Validate your model and describe its accuracy and performance.
+
+## Datasets
+
+We provide a dataset reflecting prices that should serve as a starting point and a few other recommended helpful datasets.
+
+### Price and download information
+
+We provide aggregated information about song downloads from various sources at [downloads.csv.tar.gz](files/downloads.csv.tar.gz).
+
+Description:
+
+- **artist**, **title** -- self explanatory
+- **mean.price** -- average price from various sources
+- **downloads** -- the number of downloads of the song aggregated from various sources
+- **confidence** -- the confidence towards the downloads numbers (values: terrible, bad, average, good, very good, excellent)
+
+### MillionSongDataset
+
+Available at: [MillionSongDataset website](https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset). A summary is available at [http://violet.ele.fit.cvut.cz/~kondziu/pdpmr/MillionSongDataset.tar.gz](http://violet.ele.fit.cvut.cz/~kondziu/pdpmr/MillionSongDataset.tar.gz), but is incomplete.
+
+### TasteProfile
+
+Available at [MillionSongDataset website](https://labrosa.ee.columbia.edu/millionsong/tasteprofile).
+
+### ThisIsMyJam
+
+Available at [MillionSongDataset website](https://labrosa.ee.columbia.edu/millionsong/thisismyjam).
+
+## Non-functional requirements
+
+The project can be done by individual students, or by groups of up to 3 people.
+
+The model should be packaged as a jar file named `model-NAME.jar`, where `NAME` is your name. We assume ```neu.pdpmr.project.Model``` as the main class. The jar will be executed using Spark. When executed the model reads a list of songs artists/titles from `standard input` (one per line, semicolon separated) and returns a download prediction (one per line).
+
+Example execution:
+```
+spark-submit --class neu.pdpmr.project.Model model-jan.jar
+```
+
+Example input:
+```
+William Shatner; I Can't Get Behind That
+Madonna;Like a virgin
+Iron Maiden ;Aces High
+Tenacious D; Tribute
+```
+
+Example output:
+```
+10509
+7601
+6550
+6755
+```
+
+The size of the jar file cannot exceed `100MB` (as measured by `du`). The jar file has to be self-contained---it cannot use external files or libraries (they must be included in the jar file as resources).
+
+Deliverable files: 
+
+- `src/` (directory containing the sources of the implementation)
+- `Makefile` (should contain the usual, includeing a rule to build the jar file)
+- `report.Rmd` (You know the drill)
+- `report.pdf` (A PDF rendering of `report.Rmd`)
+
+The report has a page limit of 4 pages.
+
+## Defense
+
+As part of grading each project team will be asked to give a short presentation to the instructors describing the project. Questions will be asked. You can also be asked to modify a part of the project on the spot.
+
+## Extra credit
+
+Constest: the person who submits the most accurate model (tested on a different dataset) will receive extra credit.
+
+
+

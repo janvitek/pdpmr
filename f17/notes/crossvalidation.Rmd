@@ -1,0 +1,158 @@
+---
+title: "Cross validation"
+author: "K. Siek"
+date: "November 14, 2017"
+output: 
+  ioslides_presentation:
+    widescreen: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+require(gridExtra)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(scales)
+```
+
+## Cookie quality example
+
+```{r}
+example<-tibble(i=1:18, chocolate.chips=c(1,6,4,2,5,3,6,1,6,4,2,5,3,6,2,5,3,7), quality=c(1.5,3.7,3.2,2.1,4.4,2.9,5,1.9,4.6,4.1,2.2,4.5,3.4,5.7,2.1,4,3,5.5))
+kable(example, col.names = c("", "Chocolate chip count", "Quality"), align = "ll")
+```
+
+## Cookie quality example
+<center>
+```{r}
+g <- ggplot(example, aes(x=chocolate.chips, y=quality)) + 
+  geom_point(stat="identity") + xlab("Chocolate chip count") + ylab("Quality")
+g
+```
+</center>
+
+## Cookie quality example
+
+<center>
+```{r}
+c <- coef(lm(quality ~ chocolate.chips, example %>% as.data.frame))
+g + geom_abline(intercept = c[1], slope = c[2])
+```
+</center>
+
+## Predicting the future
+
+<center>
+```{r}
+c <- coef(lm(quality ~ chocolate.chips, example %>% as.data.frame))
+g + geom_abline(intercept = c[1], slope = c[2])
+```
+</center>
+
+## Predicting the future
+
+<center>
+```{r}
+g1 <- ggplot(example, aes(x=chocolate.chips, y=quality)) + 
+  geom_point(stat="identity", color=ifelse(example%>%pull(i)<12,"black","red")) + xlab("Chocolate chip count") + ylab("Quality")
+g1
+```
+</center>
+
+## Predicting the future
+
+<center>
+```{r}
+cc <- coef(lm(quality ~ chocolate.chips, example %>% filter(i<12) %>% as.data.frame))
+g2<-g1 + geom_abline(intercept = cc[1], slope = cc[2])
+g2
+```
+</center>
+
+## Predicting the future
+
+<center>
+```{r}
+cc <- coef(lm(quality ~ chocolate.chips, example %>% filter(i<12) %>% as.data.frame))
+g3<-g2 + geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red")
+g3
+```
+</center>
+  
+<!--## Overfitting
+
+Production of an analysis that corresponds too closely or exactly to a particular set of data, and may therefore fail to fit additional data or predict future observations reliably.
+
+## Fighting overfitting
+
+- Feature selection
+- Model validation-->
+
+## k-fold cross-validation
+
+Split the data into k subsets and perform analysis on subsets (classically k=10)
+
+<center>
+```{r}
+example_sans1 <- example %>% sample_frac(.9)
+example_sans2 <- example %>% sample_frac(.9)
+example_sans3 <- example %>% sample_frac(.9)
+example_sans4 <- example %>% sample_frac(.9)
+example_sans5 <- example %>% sample_frac(.9)
+example_sans6 <- example %>% sample_frac(.9)
+example_sans7 <- example %>% sample_frac(.9)
+example_sans8 <- example %>% sample_frac(.9)
+example_sans9 <- example %>% sample_frac(.9)
+example_sans10 <- example %>% sample_frac(.9)
+
+c1 <- coef(lm(quality ~ chocolate.chips, example_sans1 %>% as.data.frame))
+c2 <- coef(lm(quality ~ chocolate.chips, example_sans2 %>% as.data.frame))
+c3 <- coef(lm(quality ~ chocolate.chips, example_sans3 %>% as.data.frame))
+c4 <- coef(lm(quality ~ chocolate.chips, example_sans4 %>% as.data.frame))
+c5 <- coef(lm(quality ~ chocolate.chips, example_sans5 %>% as.data.frame))
+c6 <- coef(lm(quality ~ chocolate.chips, example_sans6 %>% as.data.frame))
+c7 <- coef(lm(quality ~ chocolate.chips, example_sans7 %>% as.data.frame))
+c8 <- coef(lm(quality ~ chocolate.chips, example_sans8 %>% as.data.frame))
+c9 <- coef(lm(quality ~ chocolate.chips, example_sans9 %>% as.data.frame))
+c10 <- coef(lm(quality ~ chocolate.chips, example_sans10 %>% as.data.frame))
+
+
+gx<-g+ theme(axis.title.x=element_blank(), axis.title.y = element_blank())
+
+grid.arrange(
+  gx+geom_abline(intercept = c1[1], slope = c1[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c2[1], slope = c2[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c3[1], slope = c3[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c4[1], slope = c4[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c5[1], slope = c5[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c6[1], slope = c6[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c7[1], slope = c7[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c8[1], slope = c8[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c9[1], slope = c9[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  gx+geom_abline(intercept = c10[1], slope = c10[2])+ geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  ncol=4, widths=c(1,1,1,1)
+)
+```
+</center>
+
+## k-fold cross-validation
+
+Split the data into k subsets and perform analysis on subsets (classically k=10)
+
+<center>
+```{r}
+cz = c(mean(c1[1],c2[1],c3[1],c4[1],c5[1],c6[1],c7[1],c8[1],c9[1],c10[1]), mean(c1[2],c2[2],c3[2],c4[2],c5[2],c6[2],c7[2],c8[2],c9[2],c10[2]))
+
+grid.arrange(
+  gx + geom_abline(intercept = cz[1], slope = cz[2]) + geom_abline(intercept = c[1], slope = c[2], linetype = "dashed", color="red"),
+  g3+ theme(axis.title.x=element_blank(), axis.title.y = element_blank()),
+  ncol=2, widths=c(1,1)
+)
+```
+</center>
+
+## Repeated cross-validation
+
+Repeat entire cross-validation multiple times to improve result.
