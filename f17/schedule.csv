@@ -21,7 +21,7 @@ Week,Date,Day of week,Topic,Reading,Assignments,Code reviews,Contents,
 11,11/14,Tuesday,Spark: Scaling,"KKWZ 10, AD15",,,Architecture,
 11,11/17,Friday,Spark: Streaming,"B+16, S+16",Project,,"Applications; Transformations: Stateless, Stateful; Data sources; Checkpointing; Performance",
 12,11/21,Tuesday,H2O,,Project,,,
-12,11/24,Friday,TensorFlow,A+16,Project,,,
-13,12/1,Tuesday,Weka,,Project,,,
+12,11/24,Friday,[ Thanksgiving ],,,,,
+13,12/1,Tuesday,TensorFlow,A+16,Project,,,
 13,12/5,Friday,Final exam and Project Presentations,,Project,,, O+14
 14,12/8,Tuesday,Final exam and Project Presentations,,Project,,,"Sorting: Applications, Partial sorts, Total sorts, Secondary sorts. Joins: Map-side joins, Reduce-side joins, Theta joins"
