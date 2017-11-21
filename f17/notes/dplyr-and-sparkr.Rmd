@@ -1,0 +1,143 @@
+---
+title: "R Notebook"
+author: "K. Siek"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+```{r, warning=FALSE}
+suppressWarnings(library(dplyr))
+suppressWarnings(library(caret)) # dummyVars
+```
+
+# Correlation
+
+```{r, warning=FALSE}
+downloads <- read.table(file = "../files/downloads.csv.gz", header=TRUE, sep=";", quote = "", as.is = T, fill=TRUE)
+data <- select(downloads, mean.price,  confidence)
+```
+
+```{r, warning=FALSE}
+new.data <- data.frame(predict(dummyVars("~ .", data), newdata = data))
+```
+
+```{r, warning=FALSE}
+c<-cor(new.data, use = "pairwise.complete.obs")
+```
+
+# dplyr
+
+The `%>%` operator.
+
+```{r, warning=FALSE}
+t <- as_tibble(downloads)
+t <- downloads %>% as_tibble
+
+select(t, mean.price, downloads, confidence)
+t %>% select(mean.price, downloads, confidence)
+```
+
+### Selection
+
+```{r, warning=FALSE}
+t %>% 
+  select(confidence) %>%
+  distinct %>%
+  pull(confidence)
+```
+
+### Modification
+
+```{r, warning=FALSE}
+tt <- t %>% mutate(confidence.numeric = 
+                   ifelse(confidence=="terrible", 0, 
+                          ifelse(confidence=="poor", 1,
+                                 ifelse(confidence=="average", 2, 
+                                        ifelse(confidence=="good", 3, 
+                                               ifelse(confidence=="very good", 4,
+                                                      ifelse(confidence=="excellent", 5, NA)))))))
+tt
+```
+
+### Filters
+
+```{r, warning=FALSE}
+excellent <- tt %>% 
+  filter(!is.na(mean.price) & artist != "" & title != "") %>% 
+  filter(confidence.numeric > 3)
+excellent
+```
+
+### Truncating
+
+```{r, warning=FALSE}
+excellent %>% head(5) # tail()
+excellent %>% arrange(desc(mean.price)) %>% head(5)
+excellent %>% sample_n(10)
+excellent %>% sample_frac(0.00001)
+```
+
+### Joins
+
+```{r, warning=FALSE}
+random_data <- 
+  excellent %>% 
+  select(artist) %>% 
+  distinct %>%
+  mutate(random_value = rnorm(mean = 100, sd = 50, n = n()))
+random_data
+```
+
+```{r, warning=FALSE}
+ggplot(random_data, aes(x=random_value)) + geom_histogram()
+```
+
+```{r, warning=FALSE}
+joined <- inner_join(excellent, random_data, by="artist")
+joined <- left_join(excellent, random_data, by="artist")
+
+joined
+```
+
+```{r, warning=FALSE}
+ggplot(joined, aes(x=random_value)) + geom_histogram()
+```
+
+### Aggregation
+
+```{r, warning=FALSE}
+c <- joined %>% group_by(artist) %>% count
+
+c
+```
+
+```{r, warning=FALSE}
+ggplot(c, aes(x=n)) + geom_histogram()
+```
+
+```{r, warning=FALSE}
+joined %>% group_by(artist) %>% 
+  summarise(
+    median.price = median(mean.price), 
+    total.downloads = sum(downloads), 
+    mean.downloads = mean(downloads), 
+    mean.confidence = mean(confidence.numeric), 
+    confidence_list = list(confidence))
+```
+
+## SparkR
+
+```r
+library(SparkR)
+sparkR.session()
+```
+
+```r
+sample <- downloads %>% sample_n(1000) %>% as.data.frame
+df <- createDataFrame(sample, schema=NULL)
+df %>% head(5) %>% as_tibble
+df %>% select(artist) %>% head(5)
+df %>% filter(df$artist == "Madonna") %>% head(5)
+df %>% group_by(df$artist) %>% summarize(mean_price = median(df$mean_price)) %>% collect
+```
